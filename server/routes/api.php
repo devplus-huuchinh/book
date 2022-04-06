@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/user')->group(function () {
     Route::controller(UsersController::class)->group(function () {
         Route::post('/register', 'register');
-        Route::get('/login', 'login');
+        Route::post('/login', 'login');
+        Route::post('/logout', 'logout');
     });
 
     Route::middleware(['auth:sanctum'])->group(function () {

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
@@ -30,7 +29,6 @@ class UsersController extends Controller
             return response()->json($createNewUser);
         } catch (\Exception $error) {
             return response()->json([
-                'status_code' => 500,
                 'message' => 'register_fail',
                 'error' => $error,
             ]);
@@ -49,7 +47,6 @@ class UsersController extends Controller
 
             if (!Auth::attempt($loginFormData)) {
                 return response()->json([
-                    'status_code' => 500,
                     'message' => 'incorrect_username_password'
                 ]);
             }
@@ -61,17 +58,33 @@ class UsersController extends Controller
             }
 
             $tokenResult = $user->createToken('authToken')->plainTextToken;
+            $request->session()->regenerate();
 
             return response()->json([
-                'status_code' => 200,
                 'access_token' => $tokenResult,
                 'token_type' => 'Bearer',
             ]);
-        } catch (\Exception $error) {
+        } catch (\Throwable $th) {
             return response()->json([
-                'status_code' => 500,
-                'message' => 'Error in Login',
-                'error' => $error,
+                'message' => 'login_error',
+                'error' => $th,
+            ]);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        try {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return response()->json([
+                'message' => 'logout_successful'
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'logout_error',
+                'error' => $th,
             ]);
         }
     }
