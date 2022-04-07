@@ -6,13 +6,13 @@ import Main from '../layouts/Main';
 Routers.propTypes = {};
 
 function Routers(props) {
-   return (
-      <Routes>
-         <Route element={<Main />}>
-            <Route path='/*' element={<Home />} />
-         </Route>
-      </Routes>
-   );
+  return (
+    <Routes>
+      <Route element={<Main />}>
+        <Route path='/*' element={<Home />} />
+      </Route>
+    </Routes>
+  );
 }
 
 export default Routers;
