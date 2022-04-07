@@ -1,12 +1,13 @@
 import React from 'react';
+import './FooterBar.scss';
 // import PropTypes from 'prop-types';
 
 // FooterBar.propTypes = {};
 
 function FooterBar(props) {
    return (
-      <div>
-         <h1>Footer Bar</h1>
+      <div className='footer'>
+         <h1>Hello</h1>
       </div>
    );
 }
