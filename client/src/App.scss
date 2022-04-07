@@ -1,5 +1,11 @@
-html {
+@import './assets/styled/globalVariables.scss';
+html,
+body {
    box-sizing: border-box;
+   font-family: $font-primary;
+   font-size: 14px;
+   line-height: $line-height-base;
+   color: $color-dark;
 }
 * {
    margin: 0;
