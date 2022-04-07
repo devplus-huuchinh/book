@@ -1,19 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Outlet } from 'react-router-dom';
-import NavigationBar from '../../features/Home/components/NavigationBar';
-import FooterBar from '../../features/Home/components/FooterBar';
+import FooterBar from '../../components/FooterBar';
+import NavigationBar from '../../components/NavigationBar';
 
 Main.propTypes = {};
 
 function Main(props) {
-   return (
-      <div>
-         <NavigationBar />
-         <Outlet />
-         <FooterBar />
-      </div>
-   );
+  return (
+    <div>
+      <NavigationBar />
+      <Outlet />
+      <FooterBar />
+    </div>
+  );
 }
 
 export default Main;
