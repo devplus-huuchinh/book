@@ -8,6 +8,7 @@ import {
    YoutubeOutlined,
 } from '@ant-design/icons';
 import Button from '../../features/Home/components/Button';
+import BackToTop from '../BackToTop';
 
 // import PropTypes from 'prop-types';
 
@@ -31,11 +32,13 @@ function FooterBar(props) {
             </div>
             <div className='footer__category'>
                <div className='category__location'>
-                  <p>Hai Chau, Da Nang, Viet Nam, Asia</p>
-                  <a href='#' className='category__more'>
-                     More
-                     <PlusOutlined />
-                  </a>
+                  <p>Hai Chau, Da Nang, Viet Nam, Asia.</p>
+                  <div className='category__more'>
+                     <a href='#'>
+                        More
+                        <PlusOutlined />
+                     </a>
+                  </div>
                   <div className='category--social'>
                      <a href='#'>
                         <FacebookOutlined />
@@ -116,6 +119,7 @@ function FooterBar(props) {
                      </li>
                   </ul>
                </div>
+               {/* <BackToTop /> */}
             </div>
          </Container>
       </footer>

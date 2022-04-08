@@ -39,15 +39,17 @@
          p {
             font-size: 22px;
             max-width: 200px;
-            color: $color-grey;
+            color: $color-white;
          }
          .category__more {
-            color: $pink;
-            font-size: 18px;
-            font-weight: $fw-blod;
-            margin-top: 5px;
-            .anticon {
-               margin-left: 10px;
+            a {
+               color: $pink;
+               font-size: 18px;
+               font-weight: $fw-blod;
+               margin-top: 5px;
+               .anticon {
+                  margin-left: 10px;
+               }
             }
          }
          .category--social {
@@ -62,12 +64,13 @@
       }
       .category__list {
          display: flex;
+         gap: 66px;
          &--col {
-            margin-right: 50px;
             a {
                line-height: $line-height-large;
-               color: $color-white;
-               font-size: 18px;
+               color: $color-grey;
+               font-size: 14px;
+               line-height: 2;
                font-weight: $fw-light;
                transition: all 0.25s linear;
                &:hover {
@@ -78,8 +81,34 @@
          }
       }
    }
+   @media screen and (max-width: 767px) {
+      &__category {
+         flex-direction: column;
+         .category__location {
+            margin-right: 0;
+            p {
+               margin-left: auto;
+               margin-right: auto;
+               text-align: center;
+            }
+            .category__more {
+               text-align: center;
+            }
+            .category--social {
+               justify-content: center;
+            }
+         }
+         .category__list {
+            margin-top: 42px;
+            gap: 0;
+            justify-content: space-between;
+         }
+      }
+   }
+
    &__bottom {
       display: flex;
+      align-items: center;
       color: $color-grey;
       &--coppyright {
          margin-right: 138px;
@@ -88,6 +117,7 @@
          ul {
             display: flex;
             gap: 22px;
+            margin: 0;
             li {
                a {
                   color: $color-grey;
@@ -98,6 +128,30 @@
                }
             }
          }
+      }
+      @media screen and (max-width: 767px) {
+         flex-direction: column;
+         &--coppyright {
+            margin-right: 0;
+         }
+         &--policy {
+            margin-top: 18px;
+            ul {
+               li {
+                  a {
+                     line-height: $line-height-small;
+                     font-size: 12px;
+                  }
+               }
+            }
+         }
+      }
+
+      .scrollTop {
+         margin-left: auto;
+         position: fixed;
+         bottom: 10px;
+         right: 10px;
       }
    }
 }
