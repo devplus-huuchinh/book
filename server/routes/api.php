@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\RateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-
 Route::prefix('/user')->group(function () {
     Route::controller(UsersController::class)->group(function () {
         Route::post('/register', 'register');
@@ -29,6 +27,14 @@ Route::prefix('/user')->group(function () {
         Route::controller(UsersController::class)->group(function () {
             Route::get('/test', 'testAuth');
             Route::get('', 'getUserInfo');
+        });
+    });
+});
+Route::prefix('/book/rating')->group(function () {
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::controller(RateController::class)->group(function () {
+            Route::get('/','index');
+            Route::get('/{id}','show');
         });
     });
 });
