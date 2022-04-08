@@ -1,5 +1,6 @@
 import React from 'react';
 import {} from 'antd';
+import './NavigationBar.scss';
 // import PropTypes from 'prop-types';
 
 // NavigationBar.propTypes = {};

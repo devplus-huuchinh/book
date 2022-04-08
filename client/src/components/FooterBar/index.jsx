@@ -7,7 +7,7 @@ import {
    FacebookOutlined,
    YoutubeOutlined,
 } from '@ant-design/icons';
-import Button from '../../features/Home/components/Button';
+import Button from '../Button';
 import BackToTop from '../BackToTop';
 
 // import PropTypes from 'prop-types';
