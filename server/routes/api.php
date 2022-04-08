@@ -34,7 +34,7 @@ Route::prefix('/book/rating')->group(function () {
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::controller(RateController::class)->group(function () {
             Route::get('/','index');
-            Route::get('/{id}','show');
+            Route::post('/add','store');
         });
     });
 });
