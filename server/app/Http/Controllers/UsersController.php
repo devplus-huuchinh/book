@@ -6,28 +6,27 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Throwable;
 
 class UsersController extends Controller
 {
     public function register(Request $request)
     {
+        // dd($request);
         try {
             $request->validate([
                 'email' => 'required|unique:users|max:255',
                 'name' => 'required|max:255',
                 'password' => 'required',
             ]);
-
             $registerFormData = $request->all();
-
             $createNewUser = User::create([
                 'name' => $registerFormData['name'],
                 'email' => $registerFormData['email'],
                 'password' => Hash::make($registerFormData['password']),
             ]);
-
             return response()->json($createNewUser);
-        } catch (\Exception $error) {
+        } catch (\Throwable $error) {
             return response()->json([
                 'message' => 'register_fail',
                 'error' => $error,
@@ -58,7 +57,7 @@ class UsersController extends Controller
             }
 
             $tokenResult = $user->createToken('authToken')->plainTextToken;
-            $request->session()->regenerate();
+            // $request->session()->regenerate();
 
             return response()->json([
                 'access_token' => $tokenResult,
@@ -93,5 +92,19 @@ class UsersController extends Controller
     {
         $users = User::all();
         return response()->json($users);
+    }
+
+    public function getUserInfo(Request $request)
+    {
+        try {
+            $user = $request->user();
+            $getAll = User::where('id', $user->id)->with('role')->first();
+            return response()->json($getAll);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'get_profile_error',
+                'error' => $th,
+            ], 403);
+        }
     }
 }
