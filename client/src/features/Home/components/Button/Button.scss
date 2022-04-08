@@ -1,0 +1,38 @@
+@import '../../../../assets/styled/globalVariables.scss';
+.btn {
+   display: block;
+   border-radius: 45px;
+   padding: 6px 30px;
+   border: none;
+   outline: none;
+   font-size: 16px;
+   font-weight: $fw-blod;
+   transition: all 0.25s linear;
+   &__blue {
+      background-color: $bgc-blue;
+   }
+   &__purple {
+      background-color: $puple;
+   }
+   &__white {
+      background-color: $bgc-white;
+   }
+   &__dot {
+      color: $color-dark-blue;
+      position: relative;
+      &::before {
+         position: absolute;
+         content: '';
+         width: 10px;
+         height: 10px;
+         border-radius: 100rem;
+         background-color: $bgc-pink;
+         top: 0;
+         right: 2px;
+         box-shadow: 0 0 0 6px $bgc-dark-blue;
+      }
+   }
+   &:hover {
+      transform: translate(-2px, -2px);
+   }
+}
