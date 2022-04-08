@@ -9,6 +9,7 @@ import {
 } from '@ant-design/icons';
 import Button from '../Button';
 import BackToTop from '../BackToTop';
+import Logo from '../Logo';
 
 // import PropTypes from 'prop-types';
 
@@ -19,9 +20,10 @@ function FooterBar(props) {
       <footer className='footer'>
          <Container>
             <div className='footer__top'>
-               <div className='footer__top--brand'>
+               <Logo />
+               {/* <div className='footer__top--brand'>
                   <p>EBooks.</p>
-               </div>
+               </div> */}
                <div className='footer__inner'>
                   <Button
                      className='btn btn__dot m-r-20 btn__help btn__white'

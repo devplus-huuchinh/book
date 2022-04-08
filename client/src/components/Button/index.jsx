@@ -5,7 +5,8 @@ import './Button.scss';
 Button.propTypes = {};
 
 function Button(props) {
-   return <button className={props.className}>{props.title}</button>;
+   const { title, className } = props;
+   return <button className={className}>{title}</button>;
 }
 
 export default Button;
