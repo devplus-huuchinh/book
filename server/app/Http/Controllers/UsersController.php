@@ -58,7 +58,6 @@ class UsersController extends Controller
             }
 
             $tokenResult = $user->createToken('authToken')->plainTextToken;
-            // $request->session()->regenerate();
 
             return response()->json([
                 'access_token' => $tokenResult,

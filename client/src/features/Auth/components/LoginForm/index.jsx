@@ -1,17 +1,21 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Form, Input, Button, Checkbox, Typography } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
 import './LoginForm.scss';
+import { Link } from 'react-router-dom';
 
-LoginForm.propTypes = {};
+LoginForm.propTypes = {
+   handleLoginFormSubmit: PropTypes.func,
+};
+
+LoginForm.defaultProps = {
+   handleLoginFormSubmit: null,
+};
 
 function LoginForm(props) {
-   const { Link, Text } = Typography;
-
-   const onFinish = (values) => {
-      console.log('Success:', values);
-   };
+   const { Text } = Typography;
+   const { handleLoginFormSubmit } = props;
 
    const onFinishFailed = (errorInfo) => {
       console.log('Failed:', errorInfo);
@@ -21,7 +25,7 @@ function LoginForm(props) {
       <>
          <Form
             initialValues={{ remember: true }}
-            onFinish={onFinish}
+            onFinish={handleLoginFormSubmit}
             onFinishFailed={onFinishFailed}
             autoComplete='off'
             className='login-form'
@@ -29,7 +33,7 @@ function LoginForm(props) {
             <label className='login-form--label'>Username</label>
             <Form.Item
                className='login-form--inputWrap'
-               name='username'
+               name='email'
                rules={[
                   { required: true, message: 'Please input your username!' },
                ]}
@@ -49,10 +53,10 @@ function LoginForm(props) {
             </Form.Item>
 
             <div className='login-form--helper'>
-               <Form.Item name='remember' valuePropName='checked'>
+               <Form.Item valuePropName='checked'>
                   <Checkbox>Remember me</Checkbox>
                </Form.Item>
-               <Link>Forgot Password</Link>
+               {/* <Link>Forgot Password</Link> */}
             </div>
 
             <Form.Item>
@@ -74,7 +78,7 @@ function LoginForm(props) {
             </Form.Item>
             <Form.Item className='login-form--signUp'>
                <Text>Don't have a account? </Text>
-               <Link strong>Sign up for free!</Link>
+               <Link to='/user/login'>Sign up for free!</Link>
             </Form.Item>
          </Form>
       </>

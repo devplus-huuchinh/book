@@ -1,10 +1,18 @@
 import { Typography } from 'antd';
 import React from 'react';
+import authApi from '../../../../api/authApi';
 import LoginForm from '../../components/LoginForm';
 import './LoginPage.scss';
 
 function LoginPage(props) {
    const { Text, Title } = Typography;
+
+   const handleLoginFormSubmit = async (formData) => {
+      await authApi.csrfCookie();
+      const response = await authApi.login(formData);
+      console.log('🏳️‍🌈 ~ response', response);
+      localStorage.setItem('access_token', response.access_token);
+   };
 
    return (
       <div className='login-page'>
@@ -13,7 +21,7 @@ function LoginPage(props) {
                <Title>Welcome back</Title>
                <Text>Welcome back! Please enter your details.</Text>
             </div>
-            <LoginForm />
+            <LoginForm handleLoginFormSubmit={handleLoginFormSubmit} />
          </div>
          <div className='login-page--background'>
             <img
