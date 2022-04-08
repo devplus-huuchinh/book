@@ -18,6 +18,9 @@
             margin: 0 !important ;
          }
       }
+      @media screen and (max-width: 384px) {
+         justify-content: center;
+      }
    }
    &__inner {
       display: flex;
@@ -28,6 +31,9 @@
       }
       .btn__faq {
          color: #ffffff;
+      }
+      @media screen and (max-width: 384px) {
+         display: none;
       }
    }
    &__category {
@@ -42,14 +48,8 @@
             color: $color-white;
          }
          .category__more {
-            a {
-               color: $pink;
-               font-size: 18px;
-               font-weight: $fw-blod;
-               margin-top: 5px;
-               .anticon {
-                  margin-left: 10px;
-               }
+            .btn__more {
+               color: $color-dark-blue;
             }
          }
          .category--social {
@@ -72,7 +72,7 @@
                font-size: 14px;
                line-height: 2;
                font-weight: $fw-light;
-               transition: all 0.25s linear;
+               transition: all 0.2s linear;
                &:hover {
                   cursor: pointer;
                   color: $pink;
@@ -92,7 +92,9 @@
                text-align: center;
             }
             .category__more {
-               text-align: center;
+               .btn__more {
+                  margin: 0 auto;
+               }
             }
             .category--social {
                justify-content: center;

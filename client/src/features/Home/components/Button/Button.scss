@@ -7,6 +7,7 @@
    outline: none;
    font-size: 16px;
    font-weight: $fw-blod;
+   transition: all 0.25s linear;
    &__blue {
       background-color: $bgc-blue;
    }
@@ -30,5 +31,8 @@
          right: 2px;
          box-shadow: 0 0 0 6px $bgc-dark-blue;
       }
+   }
+   &:hover {
+      transform: translate(-2px, -2px);
    }
 }

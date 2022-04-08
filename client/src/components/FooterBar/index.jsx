@@ -34,10 +34,10 @@ function FooterBar(props) {
                <div className='category__location'>
                   <p>Hai Chau, Da Nang, Viet Nam, Asia.</p>
                   <div className='category__more'>
-                     <a href='#'>
-                        More
-                        <PlusOutlined />
-                     </a>
+                     <Button
+                        className='btn btn__white btn__more'
+                        title='More +'
+                     />
                   </div>
                   <div className='category--social'>
                      <a href='#'>
