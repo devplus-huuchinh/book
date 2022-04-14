@@ -2,8 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from '../features/Home';
 import Main from '../layouts/Main';
-
-Routers.propTypes = {};
+import Auth from '../features/Auth';
 
 function Routers(props) {
    return (
