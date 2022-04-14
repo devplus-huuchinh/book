@@ -107,4 +107,20 @@ class UsersController extends Controller
             ], 403);
         }
     }
+
+    public function lock(Request $request)
+    {
+        try {
+            $userId = $request->id;
+            $isBlocked = $request->isBlocked;
+            User::findOrFail($userId);
+            User::where('id', $userId)->update(['isBlocked' => $isBlocked]);
+            return response()->json(['message' => 'lock_success']);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'lock_error',
+                'error' => $th,
+            ], 500);
+        }
+    }
 }
