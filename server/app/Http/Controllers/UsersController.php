@@ -57,7 +57,6 @@ class UsersController extends Controller
             }
 
             $tokenResult = $user->createToken('authToken')->plainTextToken;
-            // $request->session()->regenerate();
 
             return response()->json([
                 'access_token' => $tokenResult,
@@ -105,6 +104,22 @@ class UsersController extends Controller
                 'message' => 'get_profile_error',
                 'error' => $th,
             ], 403);
+        }
+    }
+
+    public function lock(Request $request)
+    {
+        try {
+            $userId = $request->id;
+            $isBlocked = $request->isBlocked;
+            User::findOrFail($userId);
+            User::where('id', $userId)->update(['isBlocked' => $isBlocked]);
+            return response()->json(['message' => 'lock_success']);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'lock_error',
+                'error' => $th,
+            ], 500);
         }
     }
 }
