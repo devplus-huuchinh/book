@@ -38,7 +38,10 @@ function LoginForm(props) {
                   { required: true, message: 'Please input your username!' },
                ]}
             >
-               <Input className='login-form--input' />
+               <Input
+                  className='login-form--input'
+                  placeholder='Enter your username'
+               />
             </Form.Item>
 
             <label className='login-form--label'>Password</label>
@@ -49,14 +52,16 @@ function LoginForm(props) {
                   { required: true, message: 'Please input your password!' },
                ]}
             >
-               <Input.Password className='login-form--input' />
+               <Input.Password
+                  className='login-form--input'
+                  placeholder='Enter your password'
+               />
             </Form.Item>
 
             <div className='login-form--helper'>
                <Form.Item valuePropName='checked'>
                   <Checkbox>Remember me</Checkbox>
                </Form.Item>
-               {/* <Link>Forgot Password</Link> */}
             </div>
 
             <Form.Item>
@@ -78,7 +83,7 @@ function LoginForm(props) {
             </Form.Item>
             <Form.Item className='login-form--signUp'>
                <Text>Don't have a account? </Text>
-               <Link to='/user/login'>Sign up for free!</Link>
+               <Link to='/user/register'>Sign up for free!</Link>
             </Form.Item>
          </Form>
       </>

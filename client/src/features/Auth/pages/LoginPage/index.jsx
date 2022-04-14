@@ -8,10 +8,14 @@ function LoginPage(props) {
    const { Text, Title } = Typography;
 
    const handleLoginFormSubmit = async (formData) => {
-      await authApi.csrfCookie();
-      const response = await authApi.login(formData);
-      console.log('🏳️‍🌈 ~ response', response);
-      localStorage.setItem('access_token', response.access_token);
+      try {
+         await authApi.csrfCookie();
+         const response = await authApi.login(formData);
+         console.log('🚀 ~ response', response);
+         localStorage.setItem('access_token', response.access_token);
+      } catch (error) {
+         console.log(error);
+      }
    };
 
    return (

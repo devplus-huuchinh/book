@@ -1,6 +1,6 @@
 @import "../../../../assets/styled/globalVariables.scss";
 
-.login-form {
+.register-form {
    width: 100%;
    padding: 0px 160px;
 
@@ -8,16 +8,16 @@
       padding: 0px 30px;
    }
 
-   .login-form--label {
+   .register-form--label {
       font-size: 13px;
       font-weight: 400;
       color: $color-grey;
    }
 
-   .login-form--inputWrap {
+   .register-form--inputWrap {
       padding-top: 5px;
 
-      .login-form--input {
+      .register-form--input {
          border-radius: 8px;
          padding: 9px 12px;
          font-size: 16px;
@@ -28,7 +28,7 @@
       }
    }
 
-   .login-form--submit {
+   .register-form--submit {
       border-radius: 8px;
       height: 45px;
       background: #5959d9;
@@ -36,7 +36,7 @@
       font-size: 15px;
    }
 
-   .login-form--google {
+   .register-form--google {
       border-radius: 8px;
       height: 45px;
       border-color: #5959d9;
@@ -45,7 +45,7 @@
       margin-top: 15px;
    }
 
-   .login-form--helper {
+   .register-form--helper {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -53,11 +53,10 @@
       color: #5959d9;
    }
 
-   .login-form--signUp {
+   .register-form--signUp {
       text-align: center;
 
       a {
-         font-weight: 700;
          color: #5959d9;
       }
    }
