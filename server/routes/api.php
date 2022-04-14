@@ -49,7 +49,9 @@ Route::prefix('/rate')->group(function () {
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::controller(RateController::class)->group(function () {
             Route::get('/','index');
-            Route::post('/add','store');
+            Route::post('/store','store');
+            Route::get('{id}','show');
+            Route::delete('/{id}','destroy');
         });
     });
 });

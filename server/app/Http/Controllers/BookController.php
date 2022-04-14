@@ -26,11 +26,19 @@ class BookController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $book = Book::find($id)->get();
-        $book->update($request->all());
+        $user = new User;
+        $book = new Book;
+        if($user->id == $book->shareByUserId){
+            $book = Book::find($id)->get();
+            $book->update($request->all());
+        }
     }
     public function destroy($id)
     {
-        $book = Book::find($id)->delete();
+        $user = new User;
+        $book = new Book;
+        if($user->id == $book->shareByUserId){
+            $book = Book::find($id)->delete();
+        }
     }
 }
