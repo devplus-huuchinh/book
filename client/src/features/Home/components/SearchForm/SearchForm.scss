@@ -1,0 +1,53 @@
+@import '../../../../assets/styled/globalVariables.scss';
+.search {
+   display: flex;
+   align-items: center;
+   background-color: $bgc-white;
+   border-radius: 50px;
+   padding: 6px;
+   &__dropdown {
+      min-width: 120px;
+      border-radius: inherit;
+      margin-right: 10px;
+   }
+   &__input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      font-size: $fz-base;
+      font-weight: $fw-normal;
+      color: $color-dark;
+      input,
+      input:focus {
+         border: none;
+         outline: none;
+      }
+      input {
+         min-width: 200px;
+      }
+      .ant-input:focus {
+         box-shadow: unset;
+      }
+   }
+   &__button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 100rem;
+      background-color: $bgc-pink;
+      cursor: pointer;
+      flex: none;
+      margin-left: 15px;
+      color: $color-white;
+   }
+   .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+      border-radius: inherit;
+      border: none;
+   }
+   .ant-select-selector {
+      background-color: $bgc-grey !important;
+   }
+}

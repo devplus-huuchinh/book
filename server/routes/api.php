@@ -28,6 +28,8 @@ Route::prefix('/user')->group(function () {
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::controller(UsersController::class)->group(function () {
             Route::get('/test', 'testAuth');
+            Route::patch('/lock', 'lock');
+            Route::get('', 'getUserInfo');
         });
     });
-});
+}); 

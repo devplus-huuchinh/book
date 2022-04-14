@@ -1,0 +1,14 @@
+@import '../../assets/styled/globalVariables.scss';
+
+.logo {
+   p {
+      color: $pink;
+      font-size: 24px;
+      font-weight: $fw-bold;
+      letter-spacing: 1px;
+      margin: 0 !important ;
+   }
+   @media screen and (max-width: 384px) {
+      justify-content: center;
+   }
+}
