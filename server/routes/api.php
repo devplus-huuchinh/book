@@ -33,13 +33,14 @@ Route::prefix('/user')->group(function () {
 Route::prefix('/books')->group(function () {
     Route::controller(BookController::class)->group(function () {
         Route::get('/', 'index');
+        Route::get('/{name}', 'search');
     });
 });
-Route::get('/books',[BookController::class,'index']);
 Route::prefix('/book')->group(function (){
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::controller(BookController::class)->group(function () {
-            Route::post('/store','store');
+            Route::post('/','store');
+            Route::put('/{id}','update');
             Route::get('/{id}','show');
             Route::delete('/{id}','destroy');
         });
