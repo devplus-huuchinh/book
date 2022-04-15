@@ -9,12 +9,19 @@ class BookController extends Controller
 {
     public function store(Request $request)
     {
-        $user = $request->user();
-        $getUser = User::where('id', $user->id)->first();
-        if(Book::where('name', $request->name)->doesntExist() && $request->shareByUserId == $getUser->id){
-           $bookData = Book::create($request->all()); 
-           $bookData->save();
-           return response()->json($bookData);
+        try{
+            $user = $request->user();
+            $getUser = User::where('id', $user->id)->first();
+            if(Book::where('name', $request->name)->doesntExist() && $request->shareByUserId == $getUser->id){
+                $bookData = Book::create($request->all()); 
+                $bookData->save();
+                return response()->json($bookData);
+            }
+        }catch (\Throwable $error) {
+            return response()->json([
+                'message' => 'Addition_fail',
+                'error' => $error,
+            ]);
         }
     }
     public function show($id)
@@ -23,30 +30,56 @@ class BookController extends Controller
     }
     public function update(Request $request, $id)
     {
-        // $user = $request->user();
-        // $book= $request->book();
-        // if($book->shareByUserId == $user->id){
-            Book::where('id',$id)->update($request->all());
-        // }
+        $user = $request->user();
+        $book= Book::where('shareByUserId',$user->id)->where('id',$id)->first();
+        try{
+            if($book->shareByUserId == $user->id){
+               $data= Book::findOrFail($id);
+               $data->update($request->all());
+               return response()->json($data);
+            }
+        }catch(\Throwable $error) {
+            return response()->json([
+                'message' => 'upadating_fail',
+                'error' => $error,
+            ]);
+        }
     }
-    // public function updating(Request $request, $id){
-    //     $book = Book::find($id)->get();
-    //     $book->update($request->all());
-    // }
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        // $user = new User;
-        // $book = new Book;
-        // if($user->id == $book->shareByUserId){
-            $book = Book::find($id)->delete();
-        // }
+        try{
+            $user = $request->user();
+            $book= Book::where('shareByUserId',$user->id)->where('id',$id)->first();
+            if($book->shareByUserId == $user->id){
+                $book = Book::find($id)->delete();
+            }
+            return response()->json([
+                'message' => 'delete_complete',
+            ]);
+        }
+        catch(\Throwable $error){
+            return response()->json([
+                'message' => 'delete_fail',
+                'error' => $error,
+            ]);
+        }
     }
     public function search($name){
-        if($name == null){
-            return Book::all();
+       try{
+            $result = Book::where('name', 'LIKE', '%'. $name. '%')->get();
+            if(count($result)){
+                return Response()->json($result);
+            }
+            else
+            {
+                return response()->json(['Result' => 'No Data not found'], 404);
+            }
         }
-        else{
-            return Book::where('name','like','%'.$name.'%')->get();
+        catch(\Throwable $error){
+            return response()->json([
+                'message' => 'No_data_found',
+                'error' => $error,
+            ],404);
         }
     }
     public function index(){
