@@ -31,7 +31,7 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $user = $request->user();
-        $book= Book::where('shareByUserId',$user->id)->where('id',$id)->first();
+        $book= Book::where('shareByUserId',$user->id)->first();
         try{
             if($book->shareByUserId == $user->id){
                $data= Book::findOrFail($id);
@@ -49,13 +49,11 @@ class BookController extends Controller
     {
         try{
             $user = $request->user();
-            $book= Book::where('shareByUserId',$user->id)->where('id',$id)->first();
+            $book= Book::where('shareByUserId',$user->id)->first();
             if($book->shareByUserId == $user->id){
                 $book = Book::find($id)->delete();
             }
-            return response()->json([
-                'message' => 'delete_complete',
-            ]);
+            return response()->json(Book::all());
         }
         catch(\Throwable $error){
             return response()->json([
