@@ -3,8 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import BookDetail from '../features/BookDetail';
 import Home from '../features/Home';
 import Main from '../layouts/Main';
-
-Routers.propTypes = {};
+import Auth from '../features/Auth';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 function Routers(props) {
    return (
@@ -12,6 +12,12 @@ function Routers(props) {
          <Route element={<Main />}>
             <Route path='/book/*' element={<BookDetail />} />
             <Route path='/*' element={<Home />} />
+         </Route>
+         <Route element={<LoadingSpinner />}>
+            <Route path='/user/*' element={<Auth />} />
+            <Route element={<Main />}>
+               <Route path='/*' element={<Home />} />
+            </Route>
          </Route>
       </Routes>
    );

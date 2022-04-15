@@ -19,6 +19,6 @@ class Rate extends Model
     }
     public function book()
     {
-        return $this->belongsTo(User::class, 'bookId', 'id');
+        return $this->belongsTo(Book::class, 'bookId', 'id');
     }
 }

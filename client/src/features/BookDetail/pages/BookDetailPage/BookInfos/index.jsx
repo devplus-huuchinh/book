@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './BookInfos.scss';
 import { Rate } from 'antd';
 import Button from '../../../../../components/Button';
-BookInfos.propTypes = {};
 
 function BookInfos(props) {
    return (

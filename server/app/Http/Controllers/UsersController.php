@@ -57,7 +57,6 @@ class UsersController extends Controller
             }
 
             $tokenResult = $user->createToken('authToken')->plainTextToken;
-            // $request->session()->regenerate();
 
             return response()->json([
                 'access_token' => $tokenResult,
@@ -75,8 +74,6 @@ class UsersController extends Controller
     {
         try {
             Auth::logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
             return response()->json([
                 'message' => 'logout_successful'
             ]);
