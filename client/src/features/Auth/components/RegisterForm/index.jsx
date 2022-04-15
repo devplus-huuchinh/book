@@ -36,7 +36,7 @@ function RegisterForm(props) {
                />
             </Form.Item>
 
-            <label className='register-form--label'>Username</label>
+            <label className='register-form--label'>Email</label>
             <Form.Item
                className='register-form--inputWrap'
                name='email'
@@ -61,6 +61,37 @@ function RegisterForm(props) {
                <Input.Password
                   className='register-form--input'
                   placeholder='Enter your password'
+               />
+            </Form.Item>
+
+            <label className='register-form--label'>Re-enter Password</label>
+            <Form.Item
+               className='register-form--inputWrap'
+               name='confirmPassword'
+               dependencies={['password']}
+               hasFeedback
+               rules={[
+                  {
+                     required: true,
+                     message: 'Please confirm your password!',
+                  },
+                  ({ getFieldValue }) => ({
+                     validator(_, value) {
+                        if (!value || getFieldValue('password') === value) {
+                           return Promise.resolve();
+                        }
+                        return Promise.reject(
+                           new Error(
+                              'The two passwords that you entered do not match!'
+                           )
+                        );
+                     },
+                  }),
+               ]}
+            >
+               <Input.Password
+                  className='register-form--input'
+                  placeholder='Re-enter your password'
                />
             </Form.Item>
 

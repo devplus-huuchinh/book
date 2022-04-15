@@ -1,4 +1,4 @@
-import { Typography } from 'antd';
+import { Typography, message } from 'antd';
 import React from 'react';
 import authApi from '../../../../api/authApi';
 import LoginForm from '../../components/LoginForm';
@@ -11,8 +11,10 @@ function LoginPage(props) {
       try {
          await authApi.csrfCookie();
          const response = await authApi.login(formData);
-         console.log('🚀 ~ response', response);
          localStorage.setItem('access_token', response.access_token);
+         if (!response.access_token)
+            return message.error('Incorrect username or password.');
+         return (window.location = '/');
       } catch (error) {
          console.log(error);
       }

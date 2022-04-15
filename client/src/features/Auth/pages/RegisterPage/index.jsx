@@ -1,10 +1,10 @@
+import { message, Typography } from 'antd';
 import React from 'react';
-// import PropTypes from 'prop-types';
-import './RegisterPage.scss';
-import RegisterForm from '../../components/RegisterForm';
-import { Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import authApi from '../../../../api/authApi';
+import RegisterForm from '../../components/RegisterForm';
+// import PropTypes from 'prop-types';
+import './RegisterPage.scss';
 
 RegisterPage.propTypes = {};
 
@@ -14,8 +14,16 @@ function RegisterPage(props) {
    const handleRegister = async (formData) => {
       try {
          delete formData.agreement;
-         const response = await authApi.register(formData);
-         console.log(response);
+         delete formData.confirmPassword;
+         const registerResponse = await authApi.register(formData);
+
+         if (registerResponse.error?.validator?.excludeUnvalidatedArrayKeys)
+            return message.error('Email already exist!');
+
+         if (!registerResponse.error) {
+            message.success('Register success, please login.');
+            window.location = '/user/login';
+         }
       } catch (error) {
          console.log(error);
       }
