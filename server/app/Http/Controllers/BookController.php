@@ -34,7 +34,9 @@ class BookController extends Controller
         $book= Book::where('shareByUserId',$user->id)->first();
         try{
             if($book->shareByUserId == $user->id){
-                Book::where('id',$id)->update($request->all());
+               $data= Book::findOrFail($id);
+               $data->update($request->all());
+               return response()->json($data);
             }
         }catch(\Throwable $error) {
             return response()->json([
