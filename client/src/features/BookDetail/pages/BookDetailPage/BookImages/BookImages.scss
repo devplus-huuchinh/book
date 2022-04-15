@@ -1,0 +1,25 @@
+@import '../../../../../assets/styled/globalVariables.scss';
+.book__image {
+   display: flex;
+   justify-content: center;
+   gap: 15px;
+   padding: 20px;
+   &--large {
+      > img {
+         width: 100%;
+         max-width: 400px;
+         border-radius: 6px;
+         aspect-ratio: 3 / 4;
+         object-fit: cover;
+      }
+   }
+   &--lib {
+      max-width: 100px;
+      img {
+         width: 100%;
+         border-radius: 6px;
+         aspect-ratio: 3/4;
+         object-fit: cover;
+      }
+   }
+}

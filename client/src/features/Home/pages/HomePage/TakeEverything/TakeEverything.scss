@@ -1,0 +1,67 @@
+@import '../../../../../assets/styled/globalVariables.scss';
+.section__take {
+   padding: 50px 0px 60px;
+   background-color: $bgc-grey;
+   > .container {
+      padding: 0 60px;
+   }
+   &--top {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      > img {
+         width: 100%;
+         max-width: 400px;
+         border-radius: 6px;
+         object-fit: cover;
+         aspect-ratio: 3/4;
+      }
+      &--inner {
+         &--title {
+            margin-bottom: 35px;
+            font-size: $fz-large;
+            color: $color-blue;
+            font-weight: $fw-bold;
+         }
+         > h2 {
+            font-size: 34px;
+            color: $color-dark-blue;
+            font-weight: $fw-bold;
+            margin-bottom: 35px;
+         }
+         &--desc {
+            margin-bottom: 36px;
+         }
+      }
+   }
+   &--bottom {
+      display: flex;
+      gap: 20px;
+      margin-top: 70px;
+      .take__item {
+         display: flex;
+         gap: 20px;
+         &--index {
+            width: 30px;
+            height: 30px;
+            border-radius: 100rem;
+            background-color: $bgc-pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            > h3 {
+               margin: 0 !important;
+               color: $color-white;
+            }
+         }
+         &--content {
+            &--title {
+               color: $color-dark-blue;
+               font-weight: $fw-bold;
+               font-size: $fz-xlarge;
+            }
+         }
+      }
+   }
+}

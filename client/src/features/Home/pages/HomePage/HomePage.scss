@@ -1,14 +1,1 @@
 @import '../../../../assets/styled/globalVariables.scss';
-.section-subcriber {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   padding: 60px 0;
-   background-color: $bgc-grey;
-   gap: 20px;
-   p {
-      margin: 0;
-      font-size: $fz-xlarge;
-      font-weight: $fw-bold;
-   }
-}

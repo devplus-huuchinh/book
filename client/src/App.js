@@ -1,5 +1,7 @@
 import './App.scss';
 import '../src/assets/styled/globalStyed.scss';
+import 'swiper/css';
+
 import Routers from './routers';
 
 function App() {

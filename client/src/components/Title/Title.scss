@@ -1,0 +1,11 @@
+@import '../../assets/styled/globalVariables.scss';
+
+.section__title {
+   width: 100%;
+   text-align: left;
+   > h2 {
+      font-size: $fz-xxlarge;
+      font-weight: $fw-bold;
+      color: $color-dark-blue;
+   }
+}
