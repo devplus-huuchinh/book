@@ -16,6 +16,11 @@ const authApi = {
       return axiosClient.get(baseURL, data);
    },
 
+   useProfile: (data) => {
+      const url = '/user';
+      return axiosClient.get(url, data);
+   },
+
    testAuth: () => {
       const url = '/user/test';
       return axiosClient.get(url);
