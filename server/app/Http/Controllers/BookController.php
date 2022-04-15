@@ -32,9 +32,6 @@ class BookController extends Controller
     {
         $user = $request->user();
         $book= Book::where('shareByUserId',$user->id)->first();
-        $bookId= Book::where('id',$id)->first();
-        // dd($user->id);
-        // dd($book->shareByUserId);
         try{
             if($book->shareByUserId == $user->id){
                 Book::where('id',$id)->update($request->all());
@@ -46,13 +43,13 @@ class BookController extends Controller
             ]);
         }
     }
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        // $user = new User;
-        // $book = new Book;
-        // if($user->id == $book->shareByUserId){
+        $user = $request->user();
+        $book= Book::where('shareByUserId',$user->id)->where('id',$id)->first();
+        if($book->shareByUserId == $user->id){
             $book = Book::find($id)->delete();
-        // }
+        }
     }
     public function search($name){
         $result = Book::where('name', 'LIKE', '%'. $name. '%')->get();
