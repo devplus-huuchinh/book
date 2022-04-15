@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\RateController;
+use App\Http\Controllers\BookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,16 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-
 Route::prefix('/user')->group(function () {
     Route::controller(UsersController::class)->group(function () {
         Route::post('/register', 'register');
         Route::post('/login', 'login');
         Route::post('/logout', 'logout');
     });
-
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::controller(UsersController::class)->group(function () {
             Route::get('/test', 'testAuth');
@@ -32,4 +30,30 @@ Route::prefix('/user')->group(function () {
             Route::get('', 'getUserInfo');
         });
     });
-}); 
+});
+Route::prefix('/books')->group(function () {
+    Route::controller(BookController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{name}', 'search');
+    });
+});
+Route::prefix('/book')->group(function (){
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::controller(BookController::class)->group(function () {
+            Route::post('/','store');
+            Route::put('/{id}','update');
+            Route::get('/{id}','show');
+            Route::delete('/{id}','destroy');
+        });
+    });
+});
+Route::prefix('/rate')->group(function () {
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::controller(RateController::class)->group(function () {
+            Route::get('/','index');
+            Route::post('/store','store');
+            Route::get('{id}','show');
+            Route::delete('/{id}','destroy');
+        });
+    });
+});
