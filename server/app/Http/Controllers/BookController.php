@@ -30,11 +30,12 @@ class BookController extends Controller
     }
     public function update(Request $request, $id)
     {
+        $user = $request->user();
+        $book= Book::where('shareByUserId',$user->id)->first();
+        $bookId= Book::where('id',$id)->first();
+        // dd($user->id);
+        // dd($book->shareByUserId);
         try{
-            $user = $request->user();
-            $book= Book::where('shareByUserId',$user->id)->get();
-            //dd($user->id);
-            //dd($book->shareByUserId);
             if($book->shareByUserId == $user->id){
                 Book::where('id',$id)->update($request->all());
             }
@@ -45,10 +46,6 @@ class BookController extends Controller
             ]);
         }
     }
-    // public function updating(Request $request, $id){
-    //     $book = Book::find($id)->get();
-    //     $book->update($request->all());
-    // }
     public function destroy($id)
     {
         // $user = new User;
@@ -58,11 +55,13 @@ class BookController extends Controller
         // }
     }
     public function search($name){
-        if($name == null){
-            return Book::all();
+        $result = Book::where('name', 'LIKE', '%'. $name. '%')->get();
+        if(count($result)){
+            return Response()->json($result);
         }
-        else{
-            return Book::where('name','like','%'.$name.'%')->get();
+        else
+        {
+            return response()->json(['Result' => 'No Data not found'], 404);
         }
     }
     public function index(){
