@@ -9,11 +9,12 @@ class BookController extends Controller
 {
     public function store(Request $request)
     {
+        $user = $request->user();
+        $getUser = User::where('id', $user->id)->first();
         try{
-            $user = $request->user();
-            $getUser = User::where('id', $user->id)->first();
-            if(Book::where('name', $request->name)->doesntExist() && $request->shareByUserId == $getUser->id){
+            if(Book::where('name', $request->name)->doesntExist()){
                 $bookData = Book::create($request->all()); 
+                // dd($bookData);
                 $bookData->save();
                 return response()->json($bookData);
             }
