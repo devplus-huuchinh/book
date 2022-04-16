@@ -1,17 +1,21 @@
 import 'antd/dist/antd.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+import store from './app/store';
+import './index.scss';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-   <React.StrictMode>
-      <BrowserRouter>
-         <App />
-      </BrowserRouter>
-   </React.StrictMode>,
+   <React.Fragment>
+      <Provider store={store}>
+         <BrowserRouter>
+            <App />
+         </BrowserRouter>
+      </Provider>
+   </React.Fragment>,
    document.getElementById('root')
 );
 

@@ -57,7 +57,6 @@ class UsersController extends Controller
             }
 
             $tokenResult = $user->createToken('authToken')->plainTextToken;
-            // $request->session()->regenerate();
 
             return response()->json([
                 'access_token' => $tokenResult,
@@ -75,8 +74,6 @@ class UsersController extends Controller
     {
         try {
             Auth::logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
             return response()->json([
                 'message' => 'logout_successful'
             ]);
@@ -119,6 +116,19 @@ class UsersController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'lock_error',
+                'error' => $th,
+            ], 500);
+        }
+    }
+
+    public function getUsers()
+    {
+        try {
+            $users = User::where('roleId', 1)->with('role')->get();
+            return response()->json($users);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'get_error',
                 'error' => $th,
             ], 500);
         }

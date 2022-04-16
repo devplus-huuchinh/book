@@ -1,8 +1,8 @@
 @import '../../assets/styled/globalVariables.scss';
 .navigation {
    background-color: $bgc-grey;
-   padding: 22px 0;
    &__top {
+      padding: 22px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -16,6 +16,47 @@
          }
          .btn__login {
             color: $color-white;
+         }
+      }
+   }
+   &__bottom {
+      display: flex;
+      justify-content: space-between;
+      &--collection {
+         ul {
+            display: flex;
+            gap: 20px;
+            li {
+               a {
+                  font-weight: $fw-bold;
+                  font-size: $fz-large;
+                  color: $color-dark-blue;
+               }
+            }
+         }
+      }
+      &--basket {
+         display: flex;
+         align-items: center;
+         gap: 15px;
+         ul {
+            display: flex;
+            gap: 20px;
+            li {
+               a {
+                  font-weight: $fw-bold;
+                  font-size: $fz-xlarge;
+                  color: $pink;
+                  &:hover {
+                     color: $color-dark-blue;
+                  }
+               }
+            }
+         }
+         p {
+            font-weight: $fw-bold;
+            font-size: $fz-large;
+            color: $color-dark-blue;
          }
       }
    }

@@ -20,7 +20,7 @@ function SearchForm(props) {
             <Option value='name'>Books</Option>
          </Select>
          <div className='search__input'>
-            <Input placeholder='Basic usage' />
+            <Input placeholder='Search...' />
          </div>
          <div className='search__button'>
             <SearchOutlined />

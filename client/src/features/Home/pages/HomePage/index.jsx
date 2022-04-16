@@ -1,11 +1,21 @@
 import React from 'react';
-import Container from '../../../../layouts/Container';
+import AllBooks from './AllBooks';
+import BestBooks from './BestBooks';
+import Subcriber from './Subcriber';
+import TakeEverything from './TakeEverything';
+
+import './HomePage.scss';
+import HeroSlider from './HeroSlider';
 
 function HomePage(props) {
    return (
-      <div>
-         <h1>Hello HomePage</h1>
-      </div>
+      <React.Fragment>
+         <HeroSlider />
+         <BestBooks />
+         <TakeEverything />
+         <AllBooks />
+         <Subcriber />
+      </React.Fragment>
    );
 }
 

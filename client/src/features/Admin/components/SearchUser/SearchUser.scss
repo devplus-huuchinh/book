@@ -1,0 +1,14 @@
+.search-user {
+   display: flex;
+   width: 50%;
+   gap: 10px;
+   padding-bottom: 20px;
+
+   .search-user--type {
+      flex: 1;
+   }
+
+   .search-user--input {
+      flex: 4;
+   }
+}

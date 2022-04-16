@@ -1,0 +1,7 @@
+@import '../../../../../assets/styled/globalVariables.scss';
+
+.slider__image {
+   width: 100%;
+   aspect-ratio: 16/9;
+   object-fit: cover;
+}

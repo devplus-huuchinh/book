@@ -1,0 +1,56 @@
+@import "../../../../assets/styled/globalVariables.scss";
+
+.register-page {
+   display: flex;
+   height: 100vh;
+   overflow: hidden;
+
+   .register-page--background {
+      flex: 1.2;
+      height: 100%;
+
+      .register-page--image {
+         height: 100%;
+         width: 100%;
+         object-fit: cover;
+      }
+   }
+
+   .register-page--title {
+      padding: 0px 160px;
+      margin-bottom: 30px;
+
+      h1 {
+         font-size: 34px;
+         line-height: 1;
+      }
+
+      span {
+         font-size: 15px;
+      }
+      @media screen and (max-width: 767px) {
+         padding: 0px 30px;
+      }
+
+      a {
+         font-weight: 700;
+         color: #5959d9;
+      }
+   }
+
+   .register-page--form {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+   }
+
+   @media screen and (max-width: 767px) {
+      padding: 30px 0px;
+      flex-direction: column;
+
+      .register-page--background {
+         display: none;
+      }
+   }
+}
