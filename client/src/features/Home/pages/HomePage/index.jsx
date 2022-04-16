@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Container from '../../../../layouts/Container';
 import Subcriber from '../../components/Subcribers';
 import './HomePage.scss';
@@ -11,6 +12,7 @@ function HomePage(props) {
          <section className='section-subcriber'>
             <p>Join the our Company</p>
             <Subcriber />
+            <Link to='/admin'>admin</Link>
          </section>
       </div>
    );

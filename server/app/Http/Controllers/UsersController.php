@@ -120,4 +120,17 @@ class UsersController extends Controller
             ], 500);
         }
     }
+
+    public function getUsers()
+    {
+        try {
+            $users = User::where('roleId', 1)->with('role')->get();
+            return response()->json($users);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'get_error',
+                'error' => $th,
+            ], 500);
+        }
+    }
 }
