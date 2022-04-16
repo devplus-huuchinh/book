@@ -1,12 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import './Button.scss';
 
-Button.propTypes = {};
+// Button.propTypes = {};
 
 function Button(props) {
-   const { title, className } = props;
-   return <button className={className}>{title}</button>;
+   const { title, className, onClick } = props;
+   return (
+      <button className={className} onClick={onClick}>
+         {title}
+      </button>
+   );
 }
 
 export default Button;

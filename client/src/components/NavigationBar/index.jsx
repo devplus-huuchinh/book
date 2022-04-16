@@ -5,18 +5,21 @@ import Container from '../../layouts/Container';
 import SearchForm from '../../features/Home/components/SearchForm';
 import Button from '../../components/Button';
 import Logo from '../Logo';
-import HeaderNavigation from '../../features/Home/components/HeaderNavigation';
+import HeaderNavigation from './HeaderNavigation';
+import { Avatar } from 'antd';
 import {
    UserOutlined,
    TagOutlined,
    ShoppingCartOutlined,
 } from '@ant-design/icons';
+import UserInner from './User';
 
 // import PropTypes from 'prop-types';
 
 // NavigationBar.propTypes = {};
 
 function NavigationBar(props) {
+   const isLogin = true;
    return (
       <div className='navigation'>
          <Container>
@@ -25,10 +28,14 @@ function NavigationBar(props) {
                <SearchForm />
                <div className='navigation__top--inner'>
                   <Button className='btn btn__dot btn__white' title='Help' />
-                  <Button
-                     className='btn btn__purple btn__login'
-                     title='Login/Sign'
-                  />
+                  {!isLogin ? (
+                     <Button
+                        className='btn btn__purple btn__login'
+                        title='Login/Sign'
+                     />
+                  ) : (
+                     <UserInner />
+                  )}
                </div>
             </div>
             <div className='navigation__bottom'>

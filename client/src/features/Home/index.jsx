@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 function Home(props) {
    return (
       <Routes>
+         <Route path='/book' element={<HomePage />} />
          <Route path='/' element={<HomePage />} />
       </Routes>
    );

@@ -1,0 +1,37 @@
+@import '../../../../../assets/styled/globalVariables.scss';
+.more__books {
+   margin-top: 50px;
+   padding-bottom: 60px;
+   &--wrapper {
+      padding: 20px 0;
+   }
+   &--list {
+      display: flex;
+      gap: 16px;
+   }
+   @media screen and (max-width: 767px) {
+      &--list {
+         display: grid;
+         justify-content: flex-start;
+         grid-auto-columns: 40%;
+         grid-auto-flow: column;
+         grid-gap: 1.5rem;
+         overflow: auto;
+         overflow-y: hidden;
+         scroll-snap-type: x mandatory;
+         scroll-snap-stop: always;
+         -ms-touch-action: manipulation;
+         touch-action: manipulation;
+         -webkit-overflow-scrolling: touch;
+         scroll-padding: 1rem;
+         grid-template-columns: unset;
+      }
+      &--list::-webkit-scrollbar {
+         display: none;
+         width: 0;
+      }
+      &--list > * {
+         scroll-snap-align: start;
+      }
+   }
+}
