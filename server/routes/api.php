@@ -5,6 +5,7 @@ use App\Http\Controllers\RateController;
 use App\Http\Controllers\BookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,28 +33,41 @@ Route::prefix('/user')->group(function () {
         });
     });
 });
+
+Route::prefix('/rate')->group(function () {
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::controller(RateController::class)->group(function () {
+            Route::post('/new', 'newRate');
+            Route::delete('/cancel', 'unRate');
+        });
+    });
+    Route::get('', [RateController::class, 'rate']);
+});
+
+Route::prefix('/comment')->group(function () {
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::controller(CommentController::class)->group(function () {
+            Route::post('', 'comment');
+            Route::delete('', 'executed');
+            Route::patch('', 'editComment');
+            Route::get('', 'allComment');
+        });
+    });
+});
+
 Route::prefix('/books')->group(function () {
     Route::controller(BookController::class)->group(function () {
         Route::get('/', 'index');
         Route::get('/{name}', 'search');
     });
 });
+
 Route::prefix('/book')->group(function () {
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::controller(BookController::class)->group(function () {
             Route::post('/', 'store');
             Route::put('/{id}', 'update');
             Route::get('/{id}', 'show');
-            Route::delete('/{id}', 'destroy');
-        });
-    });
-});
-Route::prefix('/rate')->group(function () {
-    Route::middleware(['auth:sanctum'])->group(function () {
-        Route::controller(RateController::class)->group(function () {
-            Route::get('/', 'index');
-            Route::post('/store', 'store');
-            Route::get('{id}', 'show');
             Route::delete('/{id}', 'destroy');
         });
     });
