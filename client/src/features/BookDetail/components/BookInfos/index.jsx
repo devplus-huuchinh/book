@@ -1,9 +1,15 @@
 import React from 'react';
 import './BookInfos.scss';
 import { Rate } from 'antd';
-import Button from '../../../../../components/Button';
+import Button from '../../../../components/Button';
+import PropTypes from 'prop-types';
+
+BookInfos.propTypes = {
+   bookDetail: PropTypes.object.isRequired,
+};
 
 function BookInfos(props) {
+   const { bookDetail } = props;
    return (
       <div className='book__infos'>
          <h3 className='book__infos--title'>Book Name</h3>

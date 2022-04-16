@@ -6,6 +6,11 @@ const authApi = {
       return axiosClient.post(url, data);
    },
 
+   logout: () => {
+      const url = '/user/logout';
+      return axiosClient.post(url);
+   },
+
    register: (data) => {
       const url = '/user/register';
       return axiosClient.post(url, data);

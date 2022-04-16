@@ -1,38 +1,55 @@
+import {
+   ShoppingCartOutlined,
+   TagOutlined,
+   UserOutlined,
+} from '@ant-design/icons';
 import React from 'react';
-import {} from 'antd';
-import './NavigationBar.scss';
-import Container from '../../layouts/Container';
-import SearchForm from '../../features/Home/components/SearchForm';
+import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
+import { authData } from '../../features/Auth/authSlice';
+import SearchForm from '../../features/Home/components/SearchForm';
+import Container from '../../layouts/Container';
 import Logo from '../Logo';
 import HeaderNavigation from './HeaderNavigation';
-import { Avatar } from 'antd';
-import {
-   UserOutlined,
-   TagOutlined,
-   ShoppingCartOutlined,
-} from '@ant-design/icons';
+import './NavigationBar.scss';
 import UserInner from './User';
 
-// import PropTypes from 'prop-types';
-
-// NavigationBar.propTypes = {};
-
 function NavigationBar(props) {
-   const isLogin = true;
+   const userData = useSelector(authData);
+   const navigate = useNavigate();
+   const isLogin = Object.keys(userData).length === 0 ? false : true;
+
+   const onClickLogin = () => {
+      navigate('/user/login');
+   };
+
+   const onClickRegister = () => {
+      navigate('/user/register');
+   };
+
    return (
       <div className='navigation'>
          <Container>
             <div className='navigation__top'>
-               <Logo />
+               <Link to='/'>
+                  <Logo />
+               </Link>
                <SearchForm />
                <div className='navigation__top--inner'>
-                  <Button className='btn btn__dot btn__white' title='Help' />
                   {!isLogin ? (
-                     <Button
-                        className='btn btn__purple btn__login'
-                        title='Login/Sign'
-                     />
+                     <>
+                        <Button
+                           className='btn btn__dot btn__white'
+                           title='Register'
+                           onClick={onClickRegister}
+                        />
+                        <Button
+                           className='btn btn__purple btn__login'
+                           title='Login/Sign'
+                           onClick={onClickLogin}
+                        />
+                     </>
                   ) : (
                      <UserInner />
                   )}

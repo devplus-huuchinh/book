@@ -1,18 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Container from '../../../../layouts/Container';
-import BreadCrumb from '../../../../features/BookDetail/pages/BookDetailPage/BreadCrumb';
-import BookImages from './BookImages';
-import BookInfos from './BookInfos';
+import BookInfos from '../../components/BookInfos';
+import BookComments from '../../components/BookComments';
+import BookImages from '../../components/BookImages';
+import BreadCrumb from '../../components/BreadCrumb';
+import MoreBooks from '../../components/MoreBooks';
 import './BookDetailPage.scss';
-import MoreBooks from './MoreBooks';
-import BookComments from './BookComments';
-
-BookDetailPage.propTypes = {};
+import bookApi from '../../../../api/bookApi';
 
 function BookDetailPage(props) {
    const { bookId } = useParams();
+   const [bookDetail, setBookDetail] = useState({});
+
+   useEffect(() => {
+      const getBookById = async () => {
+         try {
+            const response = await bookApi.getBook(bookId);
+            console.log('🚀 ~ response', response);
+            setBookDetail(response);
+         } catch (error) {
+            console.log(error);
+         }
+      };
+      getBookById();
+   }, [bookId]);
 
    return (
       <main>
@@ -20,7 +32,7 @@ function BookDetailPage(props) {
             <BreadCrumb />
             <div className='detail__wrapper'>
                <BookImages />
-               <BookInfos />
+               <BookInfos bookDetail={bookDetail} />
             </div>
             <BookComments />
             <MoreBooks />
