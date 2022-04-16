@@ -12,16 +12,15 @@ function BestBooks(props) {
    const [newBooks, setNewBooks] = useState();
 
    useEffect(() => {
-      const getAllBooks = async () => {
+      const getNewBooks = async () => {
          try {
             const response = await bookApi.getNewBook();
-            console.log('🚀 ~ response', response);
             setNewBooks(response);
          } catch (error) {
             console.log(error);
          }
       };
-      getAllBooks();
+      getNewBooks();
    }, []);
 
    return (

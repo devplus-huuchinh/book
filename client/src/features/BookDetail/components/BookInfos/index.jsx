@@ -10,14 +10,17 @@ BookInfos.propTypes = {
 
 function BookInfos(props) {
    const { bookDetail } = props;
+   console.log('🚀 ~ bookDetail', bookDetail);
    return (
       <div className='book__infos'>
-         <h3 className='book__infos--title'>Book Name</h3>
-         <p className='book__infos--author'>Author</p>
-         <Rate />
+         <h3 className='book__infos--title'>{bookDetail?.name}</h3>
+         <p className='book__infos--author'>{bookDetail?.author}</p>
+         <Rate value={bookDetail?.star} disabled />
          <p className='book__infos--description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque euismod, nisi vel consectetur interdum.
+            Voluptate labore ea dolor non aliqua ut qui nisi nisi ullamco ipsum.
+            Sit fugiat minim officia duis cupidatat labore irure labore officia
+            fugiat eiusmod dolor mollit. Deserunt eiusmod consectetur tempor
+            pariatur officia.
          </p>
          <Button
             className='btn btn__blue btn--color--white'

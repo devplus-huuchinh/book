@@ -8,6 +8,7 @@ import BreadCrumb from '../../components/BreadCrumb';
 import MoreBooks from '../../components/MoreBooks';
 import './BookDetailPage.scss';
 import bookApi from '../../../../api/bookApi';
+import rateApi from '../../../../api/rateApi';
 
 function BookDetailPage(props) {
    const { bookId } = useParams();
@@ -16,9 +17,12 @@ function BookDetailPage(props) {
    useEffect(() => {
       const getBookById = async () => {
          try {
-            const response = await bookApi.getBook(bookId);
-            console.log('🚀 ~ response', response);
-            setBookDetail(response);
+            const responseBookDetail = await bookApi.getBook(bookId);
+            const responseBookRate = await rateApi.getRateByBookId(bookId);
+            setBookDetail({
+               ...responseBookDetail,
+               ...responseBookRate,
+            });
          } catch (error) {
             console.log(error);
          }
