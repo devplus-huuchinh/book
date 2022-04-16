@@ -3,6 +3,8 @@ import { Outlet } from 'react-router-dom';
 import { Spin } from 'antd';
 import { authLoadingStatus } from '../../features/Auth/authSlice';
 import { useSelector } from 'react-redux';
+import './LoadingSpinner.scss';
+import { LoadingOutlined } from '@ant-design/icons';
 
 LoadingSpinner.propTypes = {};
 
@@ -13,7 +15,13 @@ function LoadingSpinner(props) {
 
    return (
       <>
-         <Spin spinning={isLoading}>
+         <Spin
+            spinning={isLoading}
+            className='loading-spinner'
+            size='large'
+            tip='Loading'
+            indicator={<LoadingOutlined />}
+         >
             <Outlet />
          </Spin>
       </>

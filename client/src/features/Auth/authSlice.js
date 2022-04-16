@@ -1,9 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import authApi from '../../api/authApi';
 
-export const userProfile = createAsyncThunk('auth/useProfile', async (id) => {
+export const userProfile = createAsyncThunk('auth/useProfile', async () => {
    const response = await authApi.useProfile();
-   console.log('🚀 ~ response', response);
    return response;
 });
 

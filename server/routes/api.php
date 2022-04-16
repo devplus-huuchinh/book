@@ -27,6 +27,7 @@ Route::prefix('/user')->group(function () {
         Route::controller(UsersController::class)->group(function () {
             Route::get('/test', 'testAuth');
             Route::patch('/lock', 'lock');
+            Route::get('/users', 'getUsers');
             Route::get('', 'getUserInfo');
         });
     });
@@ -37,23 +38,23 @@ Route::prefix('/books')->group(function () {
         Route::get('/{name}', 'search');
     });
 });
-Route::prefix('/book')->group(function (){
+Route::prefix('/book')->group(function () {
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::controller(BookController::class)->group(function () {
-            Route::post('/','store');
-            Route::put('/{id}','update');
-            Route::get('/{id}','show');
-            Route::delete('/{id}','destroy');
+            Route::post('/', 'store');
+            Route::put('/{id}', 'update');
+            Route::get('/{id}', 'show');
+            Route::delete('/{id}', 'destroy');
         });
     });
 });
 Route::prefix('/rate')->group(function () {
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::controller(RateController::class)->group(function () {
-            Route::get('/','index');
-            Route::post('/store','store');
-            Route::get('{id}','show');
-            Route::delete('/{id}','destroy');
+            Route::get('/', 'index');
+            Route::post('/store', 'store');
+            Route::get('{id}', 'show');
+            Route::delete('/{id}', 'destroy');
         });
     });
 });
