@@ -2,51 +2,84 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Models\Rate;
-use App\Models\Book;
-use App\Models\User;
+
 class RateController extends Controller
 {
-    public function index()
+    public function newRate(Request $request)
     {
-       return Rate::all();
-    }
-    public function store(Request $request)
-    {
-        $user = new User;
-        $book = new Book;
-        if( $user->id == $request->userId && $book->id == $request->bookId ){
-            $rate = Rate::create($request->all());
-            $rate->save();
-            return response()->json($rate);
+        try {
+            $user = $request->user();
+            //book validate
+            Book::findOrFail($request->bookId);
+            //rate validate
+            $existedRate = Rate::where('bookId', $request->bookId)->where('userId', $user->id)->count();
+            if ($existedRate < 1) {
+                $data = [
+                    "star" => $request->star,
+                    'bookId' => $request->bookId,
+                    'userId' => $user->id,
+                ];
+                Rate::create($data);
+                return response()->json(['message' => 'rate_success']);
+            }
+            return response()->json([
+                'message' => 'rate_error',
+                'error' => 'This user already rate this book',
+            ], 500);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'rate_error',
+                'error' => $th,
+            ], 500);
         }
     }
-    public function show($id)
+
+    public function unRate(Request $request)
     {
-        $user = new User;
-        $book = new Book;
-        $rate = new Rate;
-        if( $user->id == $rate->userId && $book->id == $rate->bookId ){
-            return Rate::where('id', $id)->first();
+        try {
+            $user = $request->user();
+            //book validate
+            Book::findOrFail($request->bookId);
+            //rate validate
+            $existedRate = Rate::where('bookId', $request->bookId)->where('userId', $user->id)->count();
+            if ($existedRate > 0) {
+                $Rate = Rate::where('bookId', $request->bookId)->where('userId', $user->id)->first();
+                $Rate->delete();
+                return response()->json(['message' => 'unRate_success']);
+            }
+            return response()->json([
+                'message' => 'unRate_error',
+                'error' => "This book wasn't rated before",
+            ], 500);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'unRate_error',
+                'error' => $th,
+            ], 500);
         }
     }
-    public function update(Request $request, $id)
+
+    public function rate(Request $request)
     {
-        $user = new User;
-        $book = new Book;
-        if( $user->id == $request->userId && $book->id == $request->bookId ){
-            $rate = Rate::find($id);
-            $rate->update($request->all());
-        }
-    }
-    public function destroy($id)
-    {
-        $user = new User;
-        $book = new Book;
-        $rate = new Rate;
-        if( $user->id == $rate->userId && $book->id == $rate->bookId ){
-            Rate::find($id)->delete();
+        try {
+            $bookId = $request->bookId;
+            $allRate = Rate::where('bookId', $bookId)->get();
+            //reducer
+
+            $arr = [];
+            foreach ($allRate as $item) {
+                array_push($arr, $item->star);
+            }
+            $averageRate = array_sum($arr) / count($allRate);
+            return response()->json(['star' => $averageRate]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'getRate_error',
+                'error' => $th,
+            ], 500);
         }
     }
 }
