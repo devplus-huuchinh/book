@@ -1,0 +1,69 @@
+@import '../../assets/styled/globalVariables.scss';
+.book {
+   &__wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 250px;
+      // min-width: 180px;
+      padding: 25px 10px;
+      border-radius: 6px;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+      .book__img {
+         overflow: hidden;
+         border-radius: inherit;
+         > img {
+            width: 100%;
+            height: 215px;
+            object-fit: cover;
+            border-radius: inherit;
+            flex-shrink: 0;
+            transition: all 0.25s linear;
+         }
+      }
+      &:hover {
+         img {
+            transform: scale(1.1);
+         }
+      }
+   }
+   &__bottom {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+   }
+   &__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 12px;
+      margin-bottom: auto;
+      > h3 {
+         display: -webkit-box;
+         -webkit-line-clamp: 2;
+         -webkit-box-orient: vertical;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         word-break: break-word;
+         font-weight: $fw-bold;
+         text-align: center;
+      }
+      > p {
+         font-size: $fz-base;
+         font-style: italic;
+         color: $color-grey;
+      }
+   }
+   &__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      > .btn {
+         margin-top: 10px;
+      }
+      > .ant-rate {
+         margin-top: 10px;
+      }
+   }
+}
