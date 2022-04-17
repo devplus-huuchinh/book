@@ -56,9 +56,9 @@ function BookInfos(props) {
    const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 
    return (
-      <>
-         <div className='book__infos'>
-            <Skeleton loading={false}>
+      <React.Fragment>
+         <Skeleton loading={false}>
+            <div className='book__infos'>
                <h3 className='book__infos--title'>{bookDetail?.name}</h3>
                <p className='book__infos--author'>{bookDetail?.author}</p>
                <Rate value={bookDetail?.star} disabled />
@@ -89,8 +89,8 @@ function BookInfos(props) {
                      />
                   )}
                </div>
-            </Skeleton>
-         </div>
+            </div>
+         </Skeleton>
          <div>
             <Modal
                title={bookDetail?.name}
@@ -113,7 +113,7 @@ function BookInfos(props) {
                <Rate tooltips={desc} onChange={handleChangeRating} />
             </Modal>
          </div>
-      </>
+      </React.Fragment>
    );
 }
 

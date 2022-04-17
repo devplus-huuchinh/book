@@ -1,7 +1,7 @@
 import { Select, Table } from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
-import SearchUser from '../SearchUser';
+// import SearchUser from '../SearchUser';
 import './ManageUserTable.scss';
 
 ManageUserTable.propTypes = {

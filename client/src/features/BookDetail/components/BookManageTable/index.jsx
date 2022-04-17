@@ -1,7 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-BookManageTable.propTypes = {};
 
 function BookManageTable(props) {
    return (
