@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -17,6 +18,10 @@ function BookDetailPage(props) {
    const { bookId } = useParams();
    const [bookDetail, setBookDetail] = useState({});
    const [bookComment, setBookComment] = useState([]);
+   const [moreBook, setMoreBook] = useState([]);
+   const [bookRating, setBookRating] = useState(0);
+   const [isUserRate, setIsUserRate] = useState(false);
+   const [unRate, setUnRate] = useState(false);
    const userInfo = useSelector(authData);
 
    const [userCommentInput, setUserCommentInput] = useState('');
@@ -27,7 +32,10 @@ function BookDetailPage(props) {
             const responseBookDetail = await bookApi.getBook(bookId);
             const responseBookRate = await rateApi.getRateByBookId({ bookId });
             const responseBookComment = await commentApi.getCommentInBook({
-               bookId,
+               bookId: Number(bookId),
+            });
+            const responseIsUserRate = await rateApi.checkUserRate({
+               bookId: Number(bookId),
             });
 
             setBookDetail({
@@ -36,12 +44,23 @@ function BookDetailPage(props) {
             });
 
             setBookComment(responseBookComment);
+            setIsUserRate(
+               responseIsUserRate.message === 'user_is_rate' ? true : false
+            );
          } catch (error) {
             console.log(error);
          }
       };
       getBookById();
-   }, [bookId]);
+   }, [bookId, bookRating, unRate]);
+
+   useEffect(() => {
+      const getAllBook = async () => {
+         const response = await bookApi.getAllBook();
+         setMoreBook(response);
+      };
+      getAllBook();
+   }, []);
 
    const handleChangeUserCommentInput = (e) => {
       setUserCommentInput(e.target.value);
@@ -75,13 +94,47 @@ function BookDetailPage(props) {
       });
    };
 
+   const handleChangeRating = (value) => {
+      setBookRating(value);
+   };
+
+   const handleSubmitRating = async () => {
+      try {
+         const response = await rateApi.createRateByBookId({
+            star: Number(bookRating),
+            bookId: bookId,
+         });
+         console.log('🚀 ~ response', response);
+      } catch (error) {
+         console.log(error);
+      }
+   };
+
+   const handleOnClickUnRate = async () => {
+      try {
+         const response = await rateApi.cancelRateByBookId({
+            bookId: bookId,
+         });
+         if (response.message === 'unRate_success') return setUnRate(!unRate);
+         return message.error('Something went wrong');
+      } catch (error) {
+         console.log(error);
+      }
+   };
+
    return (
       <main>
          <Container>
-            <BreadCrumb />
+            <BreadCrumb bookName={bookDetail.name} />
             <div className='detail__wrapper'>
                <BookImages />
-               <BookInfos bookDetail={bookDetail} />
+               <BookInfos
+                  bookDetail={bookDetail}
+                  handleChangeRating={handleChangeRating}
+                  handleSubmitRating={handleSubmitRating}
+                  isUserRate={isUserRate}
+                  handleOnClickUnRate={handleOnClickUnRate}
+               />
             </div>
             <BookComments
                bookDetail={bookDetail}
@@ -91,7 +144,7 @@ function BookDetailPage(props) {
                handleChangeUserCommentInput={handleChangeUserCommentInput}
                handleSubmitUserComment={handleSubmitUserComment}
             />
-            <MoreBooks />
+            <MoreBooks moreBook={moreBook} />
          </Container>
       </main>
    );

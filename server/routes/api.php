@@ -50,6 +50,7 @@ Route::prefix('/rate')->group(
                     function () {
                         Route::post('/new', 'newRate');
                         Route::delete('/cancel', 'unRate');
+                        Route::get('/is-rate', 'isUserRate');
                     }
                 );
             }
@@ -92,7 +93,7 @@ Route::prefix('/book')->group(function () {
             Route::post('/', 'store');
             Route::put('/{id}', 'update');
             Route::delete('/{id}', 'destroy');
-            Route::get('/listbook','showUsersBook');
+            Route::get('/listbook', 'showUsersBook');
             Route::get('/{id}', 'show');
         });
     });
