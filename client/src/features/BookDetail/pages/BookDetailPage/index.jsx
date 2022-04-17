@@ -25,7 +25,7 @@ function BookDetailPage(props) {
       const getBookById = async () => {
          try {
             const responseBookDetail = await bookApi.getBook(bookId);
-            const responseBookRate = await rateApi.getRateByBookId(bookId);
+            const responseBookRate = await rateApi.getRateByBookId({ bookId });
             const responseBookComment = await commentApi.getCommentInBook({
                bookId,
             });
@@ -53,7 +53,6 @@ function BookDetailPage(props) {
             bookId,
             content: userCommentInput,
          });
-         console.log('🚀 ~ response', response);
          updateNewComment(response);
          setUserCommentInput('');
       } catch (error) {
