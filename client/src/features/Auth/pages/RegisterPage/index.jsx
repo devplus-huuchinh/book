@@ -3,10 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import authApi from '../../../../api/authApi';
 import RegisterForm from '../../components/RegisterForm';
-// import PropTypes from 'prop-types';
 import './RegisterPage.scss';
-
-RegisterPage.propTypes = {};
 
 function RegisterPage(props) {
    const { Text, Title } = Typography;

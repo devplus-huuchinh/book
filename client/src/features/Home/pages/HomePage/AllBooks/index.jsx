@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import bookApi from '../../../../../api/bookApi';
 import Book from '../../../../../components/Book';
 import Title from '../../../../../components/Title';
 import Container from '../../../../../layouts/Container';
 import './AllBooks.scss';
-import bookApi from '../../../../../api/bookApi';
-
-AllBooks.propTypes = {};
 
 function AllBooks(props) {
    const [books, setBooks] = useState([]);

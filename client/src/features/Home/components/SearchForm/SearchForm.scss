@@ -50,4 +50,7 @@
    .ant-select-selector {
       background-color: $bgc-grey !important;
    }
+   @media screen and (max-width: 996px) {
+      display: none;
+   }
 }

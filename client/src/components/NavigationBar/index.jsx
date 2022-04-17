@@ -1,8 +1,3 @@
-import {
-   ShoppingCartOutlined,
-   TagOutlined,
-   UserOutlined,
-} from '@ant-design/icons';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,6 +8,11 @@ import Container from '../../layouts/Container';
 import Logo from '../Logo';
 import HeaderNavigation from './HeaderNavigation';
 import './NavigationBar.scss';
+import {
+   UserOutlined,
+   TagOutlined,
+   ShoppingCartOutlined,
+} from '@ant-design/icons';
 import UserInner from './User';
 
 function NavigationBar(props) {
