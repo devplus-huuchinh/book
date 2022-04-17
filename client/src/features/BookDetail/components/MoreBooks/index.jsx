@@ -1,6 +1,6 @@
 import React from 'react';
-import Title from '../../../../../components/Title';
-import Book from '../../../../../components/Book';
+import Book from '../../../../components/Book';
+import Title from '../../../../components/Title';
 import './MoreBooks.scss';
 
 function MoreBooks(props) {

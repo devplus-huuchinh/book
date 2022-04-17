@@ -14,7 +14,10 @@ class CommentController extends Controller
             $bookId = $request->bookId;
             //check bookID
             Comment::findOrFail($bookId);
-            $allComment = Comment::all()->sortByDesc('created_at')->where('bookId', $bookId);
+            // $allComment = Comment::all()->sortByDesc('created_at')->where('bookId', $bookId)->values();
+
+            $allComment = Comment::with('user')->get()->where('bookId', $bookId)->sortByDesc('created_at')->values();
+
             return response()->json($allComment);
         } catch (\Throwable $th) {
             return response()->json([

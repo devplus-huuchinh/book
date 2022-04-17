@@ -2,14 +2,29 @@ import React from 'react';
 import { Rate } from 'antd';
 import Button from '../Button';
 import './Book.scss';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-function Book(props) {
-   const { title, image, author } = props;
-   const navagate = useNavigate();
+Book.propTypes = {
+   title: PropTypes.string,
+   image: PropTypes.string,
+   author: PropTypes.string,
+   bookId: PropTypes.number,
+};
 
-   const onClickBookDetail = (bookId) => {
-      navagate(`/book/${bookId}`);
+Book.defaultProps = {
+   title: '',
+   image: '',
+   author: '',
+   bookId: 0,
+};
+
+function Book(props) {
+   const { title, image, author, bookId } = props;
+   const navigate = useNavigate();
+
+   const onClickBookDetail = () => {
+      navigate(`/book/${bookId}`);
    };
    return (
       <div className='book__wrapper'>
@@ -18,16 +33,15 @@ function Book(props) {
          </div>
          <div className='book__bottom'>
             <div className='book__info'>
-               <h3>{title} </h3>
+               <h3 onClick={() => onClickBookDetail()}>{title}</h3>
                <p>{author}</p>
             </div>
             <div className='book__inner'>
                <Button
                   className='btn btn__purple btn__view'
                   title='View Book'
-                  onClick={() => onClickBookDetail('123')}
+                  onClick={() => onClickBookDetail()}
                />
-               <Rate disabled defaultValue={0} />
             </div>
          </div>
       </div>

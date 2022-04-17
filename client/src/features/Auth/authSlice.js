@@ -16,7 +16,10 @@ const authSlice = createSlice({
    name: 'auth',
    initialState: initialState,
    reducers: {
-      userData: (state, action) => {},
+      logout: (state, action) => {
+         console.log('logged out');
+         state.data = {};
+      },
    },
    extraReducers: {
       [userProfile.pending]: (state, action) => {
@@ -24,7 +27,7 @@ const authSlice = createSlice({
          state.isError = false;
       },
       [userProfile.fulfilled]: (state, action) => {
-         const { id, name, email, isBlocked, photoURL, role } = action.payload;
+         const { id, name, email, isBlocked, role } = action.payload;
          state.loading = false;
          state.isError = false;
          Object.assign(state.data, {
@@ -32,7 +35,6 @@ const authSlice = createSlice({
             name,
             email,
             isBlocked,
-            photoURL,
             role,
          });
       },

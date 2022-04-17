@@ -57,8 +57,9 @@ Route::prefix('/comment')->group(function () {
 
 Route::prefix('/books')->group(function () {
     Route::controller(BookController::class)->group(function () {
-        Route::get('/', 'index');
+        Route::get('/new-book', 'newBook');
         Route::get('/{name}', 'search');
+        Route::get('/', 'index');
     });
 });
 

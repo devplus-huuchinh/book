@@ -64,22 +64,23 @@ class RateController extends Controller
 
     public function rate(Request $request)
     {
-        try {
-            $bookId = $request->bookId;
-            $allRate = Rate::where('bookId', $bookId)->get();
-            //reducer
+        // try {
+        $bookId = $request->bookId;
+        $allRate = Rate::where('bookId', $bookId)->get();
+        if (count($allRate) == 0) return response()->json(['star' => 0]);
 
-            $arr = [];
-            foreach ($allRate as $item) {
-                array_push($arr, $item->star);
-            }
-            $averageRate = array_sum($arr) / count($allRate);
-            return response()->json(['star' => $averageRate]);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => 'getRate_error',
-                'error' => $th,
-            ], 500);
+        //reducer
+        $arr = [];
+        foreach ($allRate as $item) {
+            array_push($arr, $item->star);
         }
+        $averageRate = array_sum($arr) / count($allRate);
+        return response()->json(['star' => $averageRate]);
+        // } catch (\Throwable $th) {
+        //     return response()->json([
+        //         'message' => 'getRate_error',
+        //         'error' => $th,
+        //     ], 500);
+        // }
     }
 }
