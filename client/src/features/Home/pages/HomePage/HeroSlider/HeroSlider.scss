@@ -1,7 +1,26 @@
 @import '../../../../../assets/styled/globalVariables.scss';
-
-.slider__image {
-   width: 100%;
-   aspect-ratio: 16/9;
-   object-fit: cover;
+.section__hero {
+   padding: 20px;
+   .slick-slide {
+      > div > div {
+         display: flex !important;
+         background-color: $bgc-grey;
+         border-radius: 8px;
+      }
+   }
+   .slider__image {
+      width: 50%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 8px;
+   }
+   .slider__content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 20px;
+      > p {
+         font-size: 22px;
+      }
+   }
 }

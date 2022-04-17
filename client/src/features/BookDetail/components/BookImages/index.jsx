@@ -8,7 +8,7 @@ function BookImages(props) {
    const settings = {
       dots: false,
       slidesToShow: 3,
-      slidesToScroll: 1,
+      // slidesToScroll: 1,
       vertical: true,
       draggable: true,
       infinite: true,
@@ -17,12 +17,16 @@ function BookImages(props) {
       loop: true,
       responsive: [
          {
-            breakpoint: 580,
+            breakpoint: 767,
             settings: {
                dots: false,
-               slidesToShow: 2,
-               slidesToScroll: 1,
+               slidesToShow: 3,
+               // slidesToScroll: 1,
                infinite: true,
+               vertical: false,
+               verticalSwiping: false,
+               loop: true,
+               arrows: true,
             },
          },
       ],
@@ -32,7 +36,7 @@ function BookImages(props) {
          <div className='book__image'>
             <div className='book__image--large'>
                <img
-                  src='https://scontent.fdad3-5.fna.fbcdn.net/v/t39.30808-6/276996913_1776929639179553_3094862188966658416_n.jpg?stp=dst-jpg_p526x296&_nc_cat=110&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=4HC6TWOAD3MAX9Dv2rt&_nc_ht=scontent.fdad3-5.fna&oh=00_AT-Vh8f-OcwTur9wgqRSGmikfefv223b953MXkTvmQDYMQ&oe=625F0142'
+                  src='https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80'
                   alt='Book cover'
                />
             </div>
@@ -40,31 +44,36 @@ function BookImages(props) {
                <Slider {...settings}>
                   <div>
                      <img
-                        src='https://scontent.fdad3-5.fna.fbcdn.net/v/t39.30808-6/276996913_1776929639179553_3094862188966658416_n.jpg?stp=dst-jpg_p526x296&_nc_cat=110&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=4HC6TWOAD3MAX9Dv2rt&_nc_ht=scontent.fdad3-5.fna&oh=00_AT-Vh8f-OcwTur9wgqRSGmikfefv223b953MXkTvmQDYMQ&oe=625F0142'
+                        className='book__image--small'
+                        src='https://images.unsplash.com/photo-1576872381149-7847515ce5d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80'
                         alt=''
                      />
                   </div>
                   <div>
                      <img
-                        src='https://scontent.fdad3-5.fna.fbcdn.net/v/t39.30808-6/276996913_1776929639179553_3094862188966658416_n.jpg?stp=dst-jpg_p526x296&_nc_cat=110&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=4HC6TWOAD3MAX9Dv2rt&_nc_ht=scontent.fdad3-5.fna&oh=00_AT-Vh8f-OcwTur9wgqRSGmikfefv223b953MXkTvmQDYMQ&oe=625F0142'
+                        className='book__image--small'
+                        src='https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
                         alt=''
                      />
                   </div>
                   <div>
                      <img
-                        src='https://scontent.fdad3-5.fna.fbcdn.net/v/t39.30808-6/276996913_1776929639179553_3094862188966658416_n.jpg?stp=dst-jpg_p526x296&_nc_cat=110&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=4HC6TWOAD3MAX9Dv2rt&_nc_ht=scontent.fdad3-5.fna&oh=00_AT-Vh8f-OcwTur9wgqRSGmikfefv223b953MXkTvmQDYMQ&oe=625F0142'
+                        className='book__image--small'
+                        src='https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
                         alt=''
                      />
                   </div>
                   <div>
                      <img
-                        src='https://scontent.fdad3-5.fna.fbcdn.net/v/t39.30808-6/276996913_1776929639179553_3094862188966658416_n.jpg?stp=dst-jpg_p526x296&_nc_cat=110&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=4HC6TWOAD3MAX9Dv2rt&_nc_ht=scontent.fdad3-5.fna&oh=00_AT-Vh8f-OcwTur9wgqRSGmikfefv223b953MXkTvmQDYMQ&oe=625F0142'
+                        className='book__image--small'
+                        src='https://images.unsplash.com/photo-1495640388908-05fa85288e61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
                         alt=''
                      />
                   </div>
                   <div>
                      <img
-                        src='https://scontent.fdad3-5.fna.fbcdn.net/v/t39.30808-6/276996913_1776929639179553_3094862188966658416_n.jpg?stp=dst-jpg_p526x296&_nc_cat=110&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=4HC6TWOAD3MAX9Dv2rt&_nc_ht=scontent.fdad3-5.fna&oh=00_AT-Vh8f-OcwTur9wgqRSGmikfefv223b953MXkTvmQDYMQ&oe=625F0142'
+                        className='book__image--small'
+                        src='https://images.unsplash.com/photo-1507587396692-5afe1f777676?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
                         alt=''
                      />
                   </div>

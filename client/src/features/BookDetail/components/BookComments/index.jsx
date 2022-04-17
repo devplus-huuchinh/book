@@ -53,7 +53,6 @@ function BookComments(props) {
       {
          title: 'name',
          render: (record) => {
-            console.log('🚀 ~ record', record);
             return (
                <Comment
                   author={<>{record.user.name}</>}

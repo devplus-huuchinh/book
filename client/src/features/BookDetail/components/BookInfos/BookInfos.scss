@@ -1,8 +1,9 @@
-@import "../../../../assets/styled/globalVariables.scss";
+@import '../../../../assets/styled/globalVariables.scss';
 .book {
    &__infos {
       // width: 100%;
       padding: 20px;
+      flex: 1;
       &--title {
          font-size: $fz-xxlarge;
          font-weight: $fw-bold;

@@ -12,9 +12,6 @@ function UserInner(props) {
 
    const menu = (
       <Menu>
-         <Menu.Item key='1' icon={<UserOutlined />}>
-            Profile
-         </Menu.Item>
          <Menu.Item key='3' onClick={onClickLogout} icon={<UserOutlined />}>
             Log Out
          </Menu.Item>

@@ -1,4 +1,4 @@
-@import "../../../../assets/styled/globalVariables.scss";
+@import '../../../../assets/styled/globalVariables.scss';
 .book__image {
    display: flex;
    justify-content: center;
@@ -18,11 +18,43 @@
    }
    &--lib {
       max-width: 100px;
+      .slick-list {
+         height: 450px !important;
+         @media screen and (max-width: 767px) {
+            height: unset;
+         }
+      }
       img {
          width: 100%;
          border-radius: 6px;
          aspect-ratio: 3/4;
          object-fit: cover;
+      }
+   }
+   @media screen and (max-width: 767px) {
+      flex-direction: column;
+      &--large {
+         > img {
+            aspect-ratio: 1;
+         }
+      }
+      &--lib {
+         max-width: unset;
+         img {
+            width: 100%;
+            border-radius: 6px;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+         }
+         .slick-slider {
+            // margin: 0 -15px;
+         }
+         .slick-slide {
+            padding: 5px;
+            text-align: center;
+            margin-right: 5px;
+            margin-left: 5px;
+         }
       }
    }
 }
