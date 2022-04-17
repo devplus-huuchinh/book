@@ -37,6 +37,25 @@ class RateController extends Controller
         }
     }
 
+    public function isUserRate(Request $request)
+    {
+        try {
+            $user = $request->user();
+            $bookId = $request->bookId;
+
+            $isRate = Rate::where('bookId', $bookId)->where('userId', $user->id)->count();
+            if ($isRate == 0) {
+                return response()->json(['message' => 'user_not_rate']);
+            }
+            return response()->json(['message' => 'user_is_rate']);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'error',
+                'error' => $th,
+            ], 500);
+        }
+    }
+
     public function unRate(Request $request)
     {
         try {
@@ -64,23 +83,23 @@ class RateController extends Controller
 
     public function rate(Request $request)
     {
-        // try {
-        $bookId = $request->bookId;
-        $allRate = Rate::where('bookId', $bookId)->get();
-        if (count($allRate) == 0) return response()->json(['star' => 0]);
+        try {
+            $bookId = $request->bookId;
+            $allRate = Rate::where('bookId', $bookId)->get();
+            if (count($allRate) == 0) return response()->json(['star' => 0]);
 
-        //reducer
-        $arr = [];
-        foreach ($allRate as $item) {
-            array_push($arr, $item->star);
+            //reducer
+            $arr = [];
+            foreach ($allRate as $item) {
+                array_push($arr, $item->star);
+            }
+            $averageRate = array_sum($arr) / count($allRate);
+            return response()->json(['star' => $averageRate]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'getRate_error',
+                'error' => $th,
+            ], 500);
         }
-        $averageRate = array_sum($arr) / count($allRate);
-        return response()->json(['star' => $averageRate]);
-        // } catch (\Throwable $th) {
-        //     return response()->json([
-        //         'message' => 'getRate_error',
-        //         'error' => $th,
-        //     ], 500);
-        // }
     }
 }

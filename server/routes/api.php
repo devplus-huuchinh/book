@@ -39,6 +39,7 @@ Route::prefix('/rate')->group(function () {
         Route::controller(RateController::class)->group(function () {
             Route::post('/new', 'newRate');
             Route::delete('/cancel', 'unRate');
+            Route::get('/is-rate', 'isUserRate');
         });
     });
     Route::get('', [RateController::class, 'rate']);

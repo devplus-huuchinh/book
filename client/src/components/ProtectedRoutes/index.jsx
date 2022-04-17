@@ -1,19 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { authData, authLoadingStatus } from '../../features/Auth/authSlice';
+import { Navigate } from 'react-router-dom';
 
 ProtectedRoutes.propTypes = {};
 
-function ProtectedRoutes({ children }) {
-   let location = useLocation();
-   const userData = useSelector(authData);
-   const isLoading = useSelector(authLoadingStatus);
+function ProtectedRoutes(props) {
+   console.log('🚀 ~ props', props);
+   const { userData } = props;
+
    const token = localStorage.getItem('access_token');
 
-   if (isLoading === false && !token && userData.role?.name !== 'admin')
-      return <Navigate to='/user/login' state={{ from: location }} replace />;
-   return children;
+   if (userData.role.name === 'user' || !token)
+      return <Navigate to='/user/login' />;
+   return props.children;
 }
 
 export default ProtectedRoutes;

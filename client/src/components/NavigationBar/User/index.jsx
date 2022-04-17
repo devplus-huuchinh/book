@@ -1,4 +1,4 @@
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined, BookOutlined } from '@ant-design/icons';
 import { Avatar, Dropdown, Menu, message, Typography } from 'antd';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,6 +14,9 @@ function UserInner(props) {
       <Menu>
          <Menu.Item key='1' icon={<UserOutlined />}>
             Profile
+         </Menu.Item>
+         <Menu.Item key='2' icon={<BookOutlined />}>
+            Manage Book
          </Menu.Item>
          <Menu.Item key='3' onClick={onClickLogout} icon={<UserOutlined />}>
             Log Out

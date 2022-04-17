@@ -13,7 +13,7 @@ class CommentController extends Controller
         try {
             $bookId = $request->bookId;
             //check bookID
-            Comment::findOrFail($bookId);
+            // Comment::findOrFail($bookId);
             // $allComment = Comment::all()->sortByDesc('created_at')->where('bookId', $bookId)->values();
 
             $allComment = Comment::with('user')->get()->where('bookId', $bookId)->sortByDesc('created_at')->values();
