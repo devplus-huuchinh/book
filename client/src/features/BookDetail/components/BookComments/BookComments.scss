@@ -1,7 +1,22 @@
 @import "../../../../assets/styled/globalVariables.scss";
 .book__comments {
    margin-top: 40px;
-   padding: 40px 30px;
+   padding: 30px 30px 10px;
    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
    border-radius: 10px;
+
+   .ant-table-container table > thead > tr:first-child th:last-child {
+      display: none;
+   }
+
+   .ant-table-tbody > tr > td {
+      border-bottom: 0px;
+   }
+
+   .ant-table-tbody > tr > td,
+   .ant-table-thead > tr > th,
+   .ant-table tfoot > tr > td,
+   .ant-table tfoot > tr > th {
+      padding: 0px 16px;
+   }
 }

@@ -1,8 +1,8 @@
-import React from 'react';
-import './BookInfos.scss';
-import { Rate } from 'antd';
-import Button from '../../../../components/Button';
+import { Modal, Rate } from 'antd';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import Button from '../../../../components/Button';
+import './BookInfos.scss';
 
 BookInfos.propTypes = {
    bookDetail: PropTypes.object.isRequired,
@@ -10,23 +10,45 @@ BookInfos.propTypes = {
 
 function BookInfos(props) {
    const { bookDetail } = props;
-   console.log('🚀 ~ bookDetail', bookDetail);
+   const [isReadingBookVisible, setIsReadingBookVisible] = useState(false);
+
+   const handleCancel = () => {
+      setIsReadingBookVisible(false);
+   };
+
+   const handleShowModal = () => {
+      setIsReadingBookVisible(true);
+   };
+
    return (
-      <div className='book__infos'>
-         <h3 className='book__infos--title'>{bookDetail?.name}</h3>
-         <p className='book__infos--author'>{bookDetail?.author}</p>
-         <Rate value={bookDetail?.star} disabled />
-         <p className='book__infos--description'>
-            Voluptate labore ea dolor non aliqua ut qui nisi nisi ullamco ipsum.
-            Sit fugiat minim officia duis cupidatat labore irure labore officia
-            fugiat eiusmod dolor mollit. Deserunt eiusmod consectetur tempor
-            pariatur officia.
-         </p>
-         <Button
-            className='btn btn__blue btn--color--white'
-            title='Read Book'
-         />
-      </div>
+      <>
+         <div className='book__infos'>
+            <h3 className='book__infos--title'>{bookDetail?.name}</h3>
+            <p className='book__infos--author'>{bookDetail?.author}</p>
+            <Rate value={bookDetail?.star} disabled />
+            <p className='book__infos--description'>
+               Voluptate labore ea dolor non aliqua ut qui nisi nisi ullamco
+               ipsum. Sit fugiat minim officia duis cupidatat labore irure
+               labore officia fugiat eiusmod dolor mollit. Deserunt eiusmod
+               consectetur tempor pariatur officia.
+            </p>
+            <Button
+               className='btn btn__blue btn--color--white'
+               title='Read Book'
+               onClick={handleShowModal}
+            />
+         </div>
+         <div>
+            <Modal
+               title={bookDetail?.name}
+               visible={isReadingBookVisible}
+               onCancel={handleCancel}
+               footer={false}
+            >
+               <p>{bookDetail?.content}</p>
+            </Modal>
+         </div>
+      </>
    );
 }
 
