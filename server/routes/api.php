@@ -68,8 +68,9 @@ Route::prefix('/book')->group(function () {
         Route::controller(BookController::class)->group(function () {
             Route::post('/', 'store');
             Route::put('/{id}', 'update');
-            Route::get('/{id}', 'show');
             Route::delete('/{id}', 'destroy');
+            Route::get('/listbook','showUsersBook');
+            Route::get('/{id}', 'show');
         });
     });
 });
