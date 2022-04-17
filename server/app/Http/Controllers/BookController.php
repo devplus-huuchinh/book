@@ -121,4 +121,17 @@ class BookController extends Controller
     {
         return Book::all();
     }
+    public function showUsersBook(Request $request){
+        try{
+            $user =$request->user();
+            $books = Book::where('shareByUserId', $user->id)->get();
+            return response()->json($books);
+        }
+        catch (\Throwable $error) {
+            return response()->json([
+                'message' => 'No_data_found',
+                'error' => $error,
+            ], 404);
+        }
+    }
 }

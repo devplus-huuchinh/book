@@ -50,6 +50,7 @@ Route::prefix('/rate')->group(
                     function () {
                         Route::post('/new', 'newRate');
                         Route::delete('/cancel', 'unRate');
+                        Route::get('/is-rate', 'isUserRate');
                     }
                 );
             }
@@ -86,20 +87,14 @@ Route::prefix('/books')->group(
         );
     }
 );
-
-Route::prefix('/book')->group(
-    function () {
-        Route::middleware(['auth:sanctum'])->group(
-            function () {
-                Route::controller(BookController::class)->group(
-                    function () {
-                        Route::post('/', 'store');
-                        Route::put('/{id}', 'update');
-                        Route::get('/{id}', 'show');
-                        Route::delete('/{id}', 'destroy');
-                    }
-                );
-            }
-        );
-    }
-);
+Route::prefix('/book')->group(function () {
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::controller(BookController::class)->group(function () {
+            Route::post('/', 'store');
+            Route::put('/{id}', 'update');
+            Route::delete('/{id}', 'destroy');
+            Route::get('/listbook', 'showUsersBook');
+            Route::get('/{id}', 'show');
+        });
+    });
+});

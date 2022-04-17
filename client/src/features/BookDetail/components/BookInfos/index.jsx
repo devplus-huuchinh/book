@@ -6,25 +6,59 @@ import './BookInfos.scss';
 
 BookInfos.propTypes = {
    bookDetail: PropTypes.object.isRequired,
+   handleChangeRating: PropTypes.func,
+   handleSubmitRating: PropTypes.func,
+   isUserRate: PropTypes.bool,
+};
+
+BookInfos.defaultProps = {
+   handleChangeRating: null,
+   handleSubmitRating: null,
+   isUserRate: false,
 };
 
 function BookInfos(props) {
-   const { bookDetail } = props;
-
+   const {
+      bookDetail,
+      handleChangeRating,
+      handleSubmitRating,
+      isUserRate,
+      handleOnClickUnRate,
+   } = props;
    const [isReadingBookVisible, setIsReadingBookVisible] = useState(false);
+   const [isRatingBookVisible, setIsRatingBookVisible] = useState(false);
 
-   const handleCancel = () => {
+   const handleCancelReadingBook = () => {
       setIsReadingBookVisible(false);
    };
 
-   const handleShowModal = () => {
+   const handleShowModalReadingBook = () => {
       setIsReadingBookVisible(true);
    };
+
+   const handleCancelRatingBook = () => {
+      setIsRatingBookVisible(false);
+   };
+
+   const handleOkRatingBook = () => {
+      handleSubmitRating();
+      handleCancelRatingBook();
+   };
+
+   const handleShowModalRatingBook = () => {
+      setIsRatingBookVisible(true);
+   };
+
+   const onClickUnRate = () => {
+      handleOnClickUnRate();
+   };
+
+   const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 
    return (
       <>
          <div className='book__infos'>
-            <Skeleton loading='false'>
+            <Skeleton loading={false}>
                <h3 className='book__infos--title'>{bookDetail?.name}</h3>
                <p className='book__infos--author'>{bookDetail?.author}</p>
                <Rate value={bookDetail?.star} disabled />
@@ -34,21 +68,49 @@ function BookInfos(props) {
                   labore officia fugiat eiusmod dolor mollit. Deserunt eiusmod
                   consectetur tempor pariatur officia.
                </p>
-               <Button
-                  className='btn btn__blue btn--color--white'
-                  title='Read Book'
-                  onClick={handleShowModal}
-               />
+               <div style={{ display: 'flex', gap: '10px' }}>
+                  <Button
+                     className='btn btn__blue btn--color--white'
+                     title='Read Book'
+                     onClick={handleShowModalReadingBook}
+                  />
+
+                  {isUserRate ? (
+                     <Button
+                        className='btn btn__rate'
+                        title='Un-Rate'
+                        onClick={onClickUnRate}
+                     />
+                  ) : (
+                     <Button
+                        className='btn btn__rate'
+                        title='Rate'
+                        onClick={handleShowModalRatingBook}
+                     />
+                  )}
+               </div>
             </Skeleton>
          </div>
          <div>
             <Modal
                title={bookDetail?.name}
                visible={isReadingBookVisible}
-               onCancel={handleCancel}
+               onCancel={handleCancelReadingBook}
                footer={false}
             >
                <p>{bookDetail?.content}</p>
+            </Modal>
+         </div>
+         <div>
+            <Modal
+               title='Rating book 😍'
+               visible={isRatingBookVisible}
+               onOk={handleOkRatingBook}
+               onCancel={handleCancelRatingBook}
+               width='350px'
+               style={{ textAlign: 'center' }}
+            >
+               <Rate tooltips={desc} onChange={handleChangeRating} />
             </Modal>
          </div>
       </>
