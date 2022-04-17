@@ -3,9 +3,30 @@
 .section__allbooks {
    padding: 40px 0 60px;
    &--list {
-      padding: 0 15px;
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      --f-columns: 5;
+      --f-gap: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: calc(-1 * var(--f-gap));
+      margin-bottom: calc(-1 * var(--f-gap));
+      > * {
+         max-width: unset;
+         margin-left: var(--f-gap);
+         margin-bottom: var(--f-gap);
+         width: calc((100% / var(--f-columns) - var(--f-gap)));
+      }
+      @media screen and (max-width: 1098px) {
+         --f-columns: 4;
+      }
+      @media screen and (max-width: 885px) {
+         --f-columns: 3;
+      }
+      @media screen and (max-width: 700px) {
+         --f-columns: 2;
+      }
+      @media screen and (max-width: 439px) {
+         --f-columns: 1;
+         justify-content: center;
+      }
    }
 }

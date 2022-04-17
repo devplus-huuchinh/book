@@ -11,6 +11,9 @@
          border-radius: 6px;
          aspect-ratio: 3 / 4;
          object-fit: cover;
+         @media screen and (max-width: 992px) {
+            max-width: unset;
+         }
       }
    }
    &--lib {

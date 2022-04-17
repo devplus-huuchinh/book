@@ -1,11 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Container from '../../../../../layouts/Container';
 import './HeroSlider.scss';
 import 'swiper/css';
-
-HeroSlider.propTypes = {};
 
 function HeroSlider(props) {
    return (

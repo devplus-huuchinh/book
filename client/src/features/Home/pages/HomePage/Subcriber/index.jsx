@@ -1,8 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './Subcriber.scss';
-
-Subcriber.propTypes = {};
 
 function Subcriber(props) {
    return (

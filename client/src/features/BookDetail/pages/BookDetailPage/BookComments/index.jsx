@@ -1,11 +1,7 @@
 import React from 'react';
 import './BookComments.scss';
-// import PropTypes from 'prop-types';
-
-// BookComments.propTypes = {};
 import { Comment, Tooltip, List } from 'antd';
 import moment from 'moment';
-import Container from '../../../../../layouts/Container';
 import Title from '../../../../../components/Title';
 const data = [
    {

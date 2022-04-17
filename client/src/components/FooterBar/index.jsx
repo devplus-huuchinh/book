@@ -2,13 +2,11 @@ import React from 'react';
 import './FooterBar.scss';
 import Container from '../../layouts/Container';
 import {
-   PlusOutlined,
    TwitterOutlined,
    FacebookOutlined,
    YoutubeOutlined,
 } from '@ant-design/icons';
 import Button from '../Button';
-import BackToTop from '../BackToTop';
 import Logo from '../Logo';
 
 // import PropTypes from 'prop-types';

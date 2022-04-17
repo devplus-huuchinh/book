@@ -2,39 +2,22 @@
 .section__bestbooks {
    padding: 40px 0 60px;
    &--list {
-      padding: 0 15px;
-      // display: flex;
-      // justify-content: center;
-      // gap: 18px;
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      @media screen and (max-width: 768px) {
-         display: grid;
-         justify-content: flex-start;
-         grid-auto-columns: 45%;
-         grid-auto-flow: column;
-         grid-gap: 1.5rem;
-         overflow: auto;
-         overflow-y: hidden;
-         scroll-snap-type: x mandatory;
-         scroll-snap-stop: always;
-         -ms-touch-action: manipulation;
-         touch-action: manipulation;
-         -webkit-overflow-scrolling: touch;
-         scroll-padding: 1rem;
-         grid-template-columns: unset;
+      > * {
+         max-width: unset;
+      }
+   }
+   .slick-list {
+      margin: 0 -5px;
+   }
+   .slick-slide > div {
+      padding: 10px 5px;
+      height: 100% !important;
+   }
+   .slick-track {
+      display: flex !important;
+   }
 
-         &::-webkit-scrollbar {
-            display: none;
-            width: 0;
-         }
-         > * {
-            scroll-snap-align: start;
-         }
-      }
-      @media screen and (max-width: 460px) {
-         grid-auto-columns: 90%;
-      }
+   .slick-slide {
+      height: inherit !important;
    }
 }

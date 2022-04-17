@@ -1,10 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './TakeEverything.scss';
 import Container from '../../../../../layouts/Container';
 import Button from '../../../../../components/Button';
-
-TakeEverything.propTypes = {};
 
 function TakeEverything(props) {
    return (
@@ -45,40 +42,40 @@ function TakeEverything(props) {
                </div>
                <div className='take__item'>
                   <div className='take__item--index'>
-                     <h3>1</h3>
+                     <h3>2</h3>
                   </div>
                   <div className='take__item--content'>
                      <h3 className='take__item--content--title'>
-                        Free worldwide delivery
+                        Free return for all
                      </h3>
                      <p className='take_-item--content--description'>
-                        Free worldwide delivery on all orders over $100
+                        Morbi aliquet neque as
                      </p>
                   </div>
                </div>
                <div className='take__item'>
                   <div className='take__item--index'>
-                     <h3>1</h3>
+                     <h3>3</h3>
                   </div>
                   <div className='take__item--content'>
                      <h3 className='take__item--content--title'>
-                        Free worldwide delivery
+                        10% students discount
                      </h3>
                      <p className='take_-item--content--description'>
-                        Free worldwide delivery on all orders over $100
+                        A finibus lectus auctor
                      </p>
                   </div>
                </div>
                <div className='take__item'>
                   <div className='take__item--index'>
-                     <h3>1</h3>
+                     <h3>4</h3>
                   </div>
                   <div className='take__item--content'>
                      <h3 className='take__item--content--title'>
-                        Free worldwide delivery
+                        Gift vouchers
                      </h3>
                      <p className='take_-item--content--description'>
-                        Free worldwide delivery on all orders over $100
+                        Vestibulum ante ipsum primis in faucibus orci luctus et
                      </p>
                   </div>
                </div>

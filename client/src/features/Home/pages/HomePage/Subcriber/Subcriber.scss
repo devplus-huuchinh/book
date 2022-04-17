@@ -58,5 +58,8 @@
             font-weight: $fw-bold;
          }
       }
+      @media screen and (max-width: 767px) {
+         flex-direction: column;
+      }
    }
 }

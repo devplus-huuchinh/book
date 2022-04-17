@@ -1,11 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Book from '../../../../../components/Book';
 import Title from '../../../../../components/Title';
 import Container from '../../../../../layouts/Container';
 import './AllBooks.scss';
-
-AllBooks.propTypes = {};
 
 function AllBooks(props) {
    return (

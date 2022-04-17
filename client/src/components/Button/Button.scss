@@ -42,4 +42,8 @@
    &:hover {
       transform: translate(-2px, -2px);
    }
+   @media screen and (max-width: 767px) {
+      font-size: 14px;
+      font-weight: bold;
+   }
 }
