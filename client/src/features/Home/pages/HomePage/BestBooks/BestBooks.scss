@@ -3,18 +3,16 @@
    padding: 40px 0 60px;
    &--list {
       --f-columns: 5;
-      --f-gap: 20px;
       display: flex;
       flex-wrap: nowrap;
-      margin-left: calc(-1 * var(--f-gap));
-      margin-bottom: calc(-1 * var(--f-gap));
       overflow-x: auto;
+      gap: 10px;
+      padding-top: 10px;
+      padding-bottom: 15px;
       > * {
          max-width: unset;
-         min-width: 200px;
-         margin-left: var(--f-gap);
-         margin-bottom: var(--f-gap);
-         width: calc((100% / var(--f-columns) - var(--f-gap)));
+         min-width: 232px;
+         width: calc(100% / var(--f-columns));
       }
    }
 }

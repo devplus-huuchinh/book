@@ -6,6 +6,9 @@
          display: flex !important;
          background-color: $bgc-grey;
          border-radius: 8px;
+         @media screen and (max-width: 767px) {
+            flex-direction: column;
+         }
       }
    }
    .slider__image {
@@ -13,6 +16,9 @@
       aspect-ratio: 16/9;
       object-fit: cover;
       border-radius: 8px;
+      @media screen and (max-width: 767px) {
+         width: 100%;
+      }
    }
    .slider__content {
       display: flex;
@@ -21,6 +27,9 @@
       padding: 10px 20px;
       > p {
          font-size: 22px;
+         @media screen and (max-width: 767px) {
+            font-size: 16px;
+         }
       }
    }
 }
