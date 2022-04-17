@@ -6,17 +6,12 @@ import SearchForm from '../../features/Home/components/SearchForm';
 import Button from '../../components/Button';
 import Logo from '../Logo';
 import HeaderNavigation from './HeaderNavigation';
-import { Avatar } from 'antd';
 import {
    UserOutlined,
    TagOutlined,
    ShoppingCartOutlined,
 } from '@ant-design/icons';
 import UserInner from './User';
-
-// import PropTypes from 'prop-types';
-
-// NavigationBar.propTypes = {};
 
 function NavigationBar(props) {
    const isLogin = true;

@@ -14,6 +14,18 @@ function BookImages(props) {
       infinite: true,
       arrows: false,
       verticalSwiping: true,
+      loop: true,
+      responsive: [
+         {
+            breakpoint: 580,
+            settings: {
+               dots: false,
+               slidesToShow: 2,
+               slidesToScroll: 1,
+               infinite: true,
+            },
+         },
+      ],
    };
    return (
       <React.Fragment>

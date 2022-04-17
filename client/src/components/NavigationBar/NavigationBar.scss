@@ -34,6 +34,9 @@
                }
             }
          }
+         @media screen and (max-width: 996px) {
+            display: none;
+         }
       }
       &--basket {
          display: flex;
@@ -58,6 +61,12 @@
             font-size: $fz-large;
             color: $color-dark-blue;
          }
+         @media screen and (max-width: 996px) {
+            display: none;
+         }
+      }
+      @media screen and (max-width: 996px) {
+         justify-content: center;
       }
    }
 }
