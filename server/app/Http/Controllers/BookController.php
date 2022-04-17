@@ -11,19 +11,28 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $user = $request->user();
-        $getUser = User::where('id', $user->id)->first();
+        // $getUser = User::where('id', $user->id)->first();
         try {
             if (Book::where('name', $request->name)->doesntExist()) {
-                $bookData = Book::create($request->all());
-                // dd($bookData);
+                $bookData = Book::create(
+                    [
+                    'name' => $request->name,
+                    'author' => $request->author,
+                    'type' => $request->type,
+                    'content' => $request->content,
+                    'shareByUserId' => $user->id,
+                    ]
+                );
                 $bookData->save();
                 return response()->json($bookData);
             }
         } catch (\Throwable $error) {
-            return response()->json([
+            return response()->json(
+                [
                 'message' => 'Addition_fail',
                 'error' => $error,
-            ]);
+                ]
+            );
         }
     }
     public function show($id)
@@ -31,10 +40,12 @@ class BookController extends Controller
         try {
             return Book::where('id', $id)->first();
         } catch (\Throwable $th) {
-            return response()->json([
+            return response()->json(
+                [
                 'message' => 'get_book_fail',
                 'error' => $th,
-            ]);
+                ]
+            );
         }
     }
     public function update(Request $request, $id)
@@ -48,10 +59,12 @@ class BookController extends Controller
                 return response()->json($data);
             }
         } catch (\Throwable $error) {
-            return response()->json([
+            return response()->json(
+                [
                 'message' => 'upadating_fail',
                 'error' => $error,
-            ]);
+                ]
+            );
         }
     }
     public function destroy(Request $request, $id)
@@ -64,10 +77,12 @@ class BookController extends Controller
             }
             return response()->json(Book::all());
         } catch (\Throwable $error) {
-            return response()->json([
+            return response()->json(
+                [
                 'message' => 'delete_fail',
                 'error' => $error,
-            ]);
+                ]
+            );
         }
     }
     public function search($name)
@@ -80,10 +95,12 @@ class BookController extends Controller
                 return response()->json(['Result' => 'No Data not found'], 404);
             }
         } catch (\Throwable $error) {
-            return response()->json([
+            return response()->json(
+                [
                 'message' => 'No_data_found',
                 'error' => $error,
-            ], 404);
+                ], 404
+            );
         }
     }
     public function newBook()
@@ -92,14 +109,29 @@ class BookController extends Controller
             $newBook = Book::all()->sortByDesc('created_at')->values()->take(5);
             return response()->json($newBook);
         } catch (\Throwable $th) {
-            return response()->json([
+            return response()->json(
+                [
                 'message' => 'new_book_error',
                 'error' => $th,
-            ], 500);
+                ], 500
+            );
         }
     }
     public function index()
     {
         return Book::all();
+    }
+    public function showUsersBook(Request $request){
+        try{
+            $user =$request->user();
+            $books = Book::where('shareByUserId', $user->id)->get();
+            return response()->json($books);
+        }
+        catch (\Throwable $error) {
+            return response()->json([
+                'message' => 'No_data_found',
+                'error' => $error,
+            ], 404);
+        }
     }
 }

@@ -12,9 +12,6 @@ function UserInner(props) {
 
    const menu = (
       <Menu>
-         <Menu.Item key='1' icon={<UserOutlined />}>
-            Profile
-         </Menu.Item>
          <Menu.Item key='2' icon={<BookOutlined />}>
             Manage Book
          </Menu.Item>

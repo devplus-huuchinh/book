@@ -20,10 +20,12 @@ class CommentController extends Controller
 
             return response()->json($allComment);
         } catch (\Throwable $th) {
-            return response()->json([
+            return response()->json(
+                [
                 'message' => 'comment_error',
                 'error' => $th,
-            ], 500);
+                ], 500
+            );
         }
     }
 
@@ -41,10 +43,12 @@ class CommentController extends Controller
             $newComment = Comment::create($data);
             return response()->json($newComment);
         } catch (\Throwable $th) {
-            return response()->json([
+            return response()->json(
+                [
                 'message' => 'executed_error',
                 'error' => $th,
-            ], 500);
+                ], 500
+            );
         }
     }
 
@@ -53,21 +57,25 @@ class CommentController extends Controller
         try {
             $user = $request->user();
             $commentId = $request->id;
-            //book validate           
+            //book validate
             $comment = Comment::findOrFail($commentId);
             if ($user->id == $comment->userId) {
                 $comment->delete();
                 return response()->json(['message' => 'delete_success']);
             }
-            return response()->json([
+            return response()->json(
+                [
                 'message' => 'executed_error',
                 'error' => "This user not alow to delete this comment",
-            ], 403);
+                ], 403
+            );
         } catch (\Throwable $th) {
-            return response()->json([
+            return response()->json(
+                [
                 'message' => 'executed_error',
                 'error' => $th,
-            ], 500);
+                ], 500
+            );
         }
     }
 
@@ -76,23 +84,29 @@ class CommentController extends Controller
         try {
             $user = $request->user();
             $commentId = $request->id;
-            //book validate           
+            //book validate
             $comment = Comment::findOrFail($commentId);
             if ($user->id == $comment->userId) {
-                $comment->update([
+                $comment->update(
+                    [
                     'content' => $request->content
-                ]);
+                    ]
+                );
                 return response()->json($comment);
             }
-            return response()->json([
+            return response()->json(
+                [
                 'message' => 'edit_error',
                 'error' => "This user not alow to edit this comment",
-            ], 403);
+                ], 403
+            );
         } catch (\Throwable $th) {
-            return response()->json([
+            return response()->json(
+                [
                 'message' => 'edit_error',
                 'error' => $th,
-            ], 500);
+                ], 500
+            );
         }
     }
 }

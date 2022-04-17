@@ -1,4 +1,4 @@
-import { Modal, Rate } from 'antd';
+import { Modal, Rate, Skeleton } from 'antd';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import Button from '../../../../components/Button';
@@ -58,36 +58,38 @@ function BookInfos(props) {
    return (
       <>
          <div className='book__infos'>
-            <h3 className='book__infos--title'>{bookDetail?.name}</h3>
-            <p className='book__infos--author'>{bookDetail?.author}</p>
-            <Rate value={bookDetail?.star} disabled />
-            <p className='book__infos--description'>
-               Voluptate labore ea dolor non aliqua ut qui nisi nisi ullamco
-               ipsum. Sit fugiat minim officia duis cupidatat labore irure
-               labore officia fugiat eiusmod dolor mollit. Deserunt eiusmod
-               consectetur tempor pariatur officia.
-            </p>
-            <div style={{ display: 'flex', gap: '10px' }}>
-               <Button
-                  className='btn btn__blue btn--color--white'
-                  title='Read Book'
-                  onClick={handleShowModalReadingBook}
-               />
+            <Skeleton loading={false}>
+               <h3 className='book__infos--title'>{bookDetail?.name}</h3>
+               <p className='book__infos--author'>{bookDetail?.author}</p>
+               <Rate value={bookDetail?.star} disabled />
+               <p className='book__infos--description'>
+                  Voluptate labore ea dolor non aliqua ut qui nisi nisi ullamco
+                  ipsum. Sit fugiat minim officia duis cupidatat labore irure
+                  labore officia fugiat eiusmod dolor mollit. Deserunt eiusmod
+                  consectetur tempor pariatur officia.
+               </p>
+               <div style={{ display: 'flex', gap: '10px' }}>
+                  <Button
+                     className='btn btn__blue btn--color--white'
+                     title='Read Book'
+                     onClick={handleShowModalReadingBook}
+                  />
 
-               {isUserRate ? (
-                  <Button
-                     className='btn btn__rate'
-                     title='Un-Rate'
-                     onClick={onClickUnRate}
-                  />
-               ) : (
-                  <Button
-                     className='btn btn__rate'
-                     title='Rate'
-                     onClick={handleShowModalRatingBook}
-                  />
-               )}
-            </div>
+                  {isUserRate ? (
+                     <Button
+                        className='btn btn__rate'
+                        title='Un-Rate'
+                        onClick={onClickUnRate}
+                     />
+                  ) : (
+                     <Button
+                        className='btn btn__rate'
+                        title='Rate'
+                        onClick={handleShowModalRatingBook}
+                     />
+                  )}
+               </div>
+            </Skeleton>
          </div>
          <div>
             <Modal

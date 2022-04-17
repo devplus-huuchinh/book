@@ -4,12 +4,23 @@
    gap: 10px;
    align-items: center;
    background-color: $bgc-pink;
-   padding: 4px 10px;
+   padding: 6px;
    border-radius: 100rem;
+   max-width: 150px;
+   .ant-avatar {
+      flex-shrink: 0;
+   }
    .ant-typography {
       margin: 0;
       color: $color-white;
       cursor: pointer;
+      font-size: $fz-base;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word;
    }
    .ant-select {
       border-radius: inherit;
