@@ -3,11 +3,13 @@
    display: flex;
    justify-content: center;
    gap: 15px;
-   padding: 20px;
+   padding: 10px;
+   height: fit-content;
+   width: 50%;
    &--large {
+      width: 80%;
       > img {
          width: 100%;
-         max-width: 400px;
          border-radius: 6px;
          aspect-ratio: 3 / 4;
          object-fit: cover;
@@ -17,13 +19,9 @@
       }
    }
    &--lib {
+      width: 20%;
       max-width: 100px;
-      .slick-list {
-         height: 450px !important;
-         @media screen and (max-width: 767px) {
-            height: unset;
-         }
-      }
+      height: 100%;
       img {
          width: 100%;
          border-radius: 6px;
@@ -31,30 +29,11 @@
          object-fit: cover;
       }
    }
+   @media screen and (max-width: 992px) {
+      width: 45%;
+   }
    @media screen and (max-width: 767px) {
-      flex-direction: column;
-      &--large {
-         > img {
-            aspect-ratio: 1;
-         }
-      }
-      &--lib {
-         max-width: unset;
-         img {
-            width: 100%;
-            border-radius: 6px;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-         }
-         .slick-slider {
-            // margin: 0 -15px;
-         }
-         .slick-slide {
-            padding: 5px;
-            text-align: center;
-            margin-right: 5px;
-            margin-left: 5px;
-         }
-      }
+      gap: 5px;
+      width: 100%;
    }
 }

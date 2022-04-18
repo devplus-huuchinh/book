@@ -18,6 +18,15 @@
          color: $color-grey;
          margin-bottom: 40px;
          max-width: 400px;
+         @media screen and (max-width: 767px) {
+            text-align: justify;
+         }
+      }
+      @media screen and (max-width: 767px) {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         flex-direction: column;
       }
    }
 }

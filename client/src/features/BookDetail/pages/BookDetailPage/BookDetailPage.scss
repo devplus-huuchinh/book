@@ -1,11 +1,16 @@
 @import '../../../../assets/styled/globalVariables.scss';
 .detail__wrapper {
-   padding: 0 30px;
    display: flex;
-   gap: 20px;
    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
    border-radius: 10px;
-   @media screen and (max-width: 992px) {
+
+   @media screen and (max-width: 767px) {
       flex-direction: column;
+   }
+   @media screen and (max-width: 767px) {
+      gap: 5px;
+   }
+   &:last-child {
+      display: none !important;
    }
 }

@@ -6,13 +6,13 @@ import NavigationBar from '../../components/NavigationBar';
 Main.propTypes = {};
 
 function Main(props) {
-  return (
-    <div>
-      <NavigationBar />
-      <Outlet />
-      <FooterBar />
-    </div>
-  );
+   return (
+      <React.Fragment>
+         <NavigationBar />
+         <Outlet />
+         <FooterBar />
+      </React.Fragment>
+   );
 }
 
 export default Main;

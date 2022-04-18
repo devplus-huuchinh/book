@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import '../src/assets/styled/globalStyed.scss';
 import './App.scss';
@@ -19,9 +19,9 @@ function App() {
    }, []);
 
    return (
-      <div>
+      <React.Fragment>
          <Routers />
-      </div>
+      </React.Fragment>
    );
 }
 

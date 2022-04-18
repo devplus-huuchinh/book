@@ -8,28 +8,12 @@ function BookImages(props) {
    const settings = {
       dots: false,
       slidesToShow: 3,
-      // slidesToScroll: 1,
       vertical: true,
       draggable: true,
       infinite: true,
       arrows: false,
       verticalSwiping: true,
       loop: true,
-      responsive: [
-         {
-            breakpoint: 767,
-            settings: {
-               dots: false,
-               slidesToShow: 3,
-               // slidesToScroll: 1,
-               infinite: true,
-               vertical: false,
-               verticalSwiping: false,
-               loop: true,
-               arrows: true,
-            },
-         },
-      ],
    };
    return (
       <React.Fragment>
